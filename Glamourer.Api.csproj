@@ -7,8 +7,8 @@
         <Company></Company>
         <Product>Glamourer</Product>
         <Copyright>Copyright © 2024</Copyright>
-        <FileVersion>5.0.0.0</FileVersion>
-        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <PackageVersion>5.0.0</PackageVersion>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <OutputPath>bin\$(Configuration)\</OutputPath>
