@@ -52,6 +52,52 @@ public sealed class GetStateName(DalamudPluginInterface pi)
         });
 }
 
+/// <inheritdoc cref="IGlamourerApiState.GetStateBase64"/>
+public sealed class GetStateBase64(DalamudPluginInterface pi)
+    : FuncSubscriber<int, uint, (int, string?)>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(GetStateBase64)}";
+
+    /// <inheritdoc cref="IGlamourerApiState.GetStateBase64"/>
+    public new (GlamourerApiEc, string?) Invoke(int objectIndex, uint key = 0)
+    {
+        var (ec, data) = base.Invoke(objectIndex, key);
+        return ((GlamourerApiEc)ec, data);
+    }
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<int, uint, (int, string?)> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (a, b) =>
+        {
+            var (ec, data) = api.GetStateBase64(a, b);
+            return ((int)ec, data);
+        });
+}
+
+/// <inheritdoc cref="IGlamourerApiState.GetStateBase64Name"/>
+public sealed class GetStateBase64Name(DalamudPluginInterface pi)
+    : FuncSubscriber<string, uint, (int, string?)>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(GetStateBase64Name)}";
+
+    /// <inheritdoc cref="IGlamourerApiState.GetStateBase64Name"/>
+    public new (GlamourerApiEc, string?) Invoke(string objectName, uint key = 0)
+    {
+        var (ec, data) = base.Invoke(objectName, key);
+        return ((GlamourerApiEc)ec, data);
+    }
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<string, uint, (int, string?)> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (i, k) =>
+        {
+            var (ec, data) = api.GetStateBase64Name(i, k);
+            return ((int)ec, data);
+        });
+}
+
 /// <inheritdoc cref="IGlamourerApiState.ApplyState"/>
 public sealed class ApplyState(DalamudPluginInterface pi)
     : FuncSubscriber<object, int, uint, ulong, int>(pi, Label)
