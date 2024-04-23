@@ -223,7 +223,7 @@ public sealed class RevertToAutomation(DalamudPluginInterface pi)
     : FuncSubscriber<int, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
-    public const string Label = $"Glamourer.{nameof(RevertToAutomation)}";
+    public const string Label = $"Glamourer.{nameof(RevertToAutomation)}.V2";
 
     /// <inheritdoc cref="IGlamourerApiState.RevertToAutomation"/>
     public GlamourerApiEc Invoke(int objectIndex, uint key = 0, ApplyFlag flags = ApplyFlagEx.RevertDefault)
@@ -254,7 +254,7 @@ public sealed class RevertToAutomationName(DalamudPluginInterface pi)
 public static class StateChanged
 {
     /// <summary> The label. </summary>
-    public const string Label = $"Penumbra.{nameof(StateChanged)}";
+    public const string Label = $"Penumbra.{nameof(StateChanged)}.V2";
 
     /// <summary> Create a new event subscriber. </summary>
     public static EventSubscriber<nint> Subscriber(DalamudPluginInterface pi, params Action<nint>[] actions)

@@ -10,7 +10,7 @@ public sealed class GetDesignList(DalamudPluginInterface pi)
     : FuncSubscriber<Dictionary<Guid, string>>(pi, Label)
 {
     /// <summary> The label. </summary>
-    public const string Label = $"Glamourer.{nameof(GetDesignList)}";
+    public const string Label = $"Glamourer.{nameof(GetDesignList)}.V2";
 
     /// <inheritdoc cref="IGlamourerApiDesigns.GetDesignList"/>
     public new Dictionary<Guid, string> Invoke()

@@ -9,7 +9,7 @@ public sealed class ApiVersion(DalamudPluginInterface pi)
     : FuncSubscriber<(int, int)>(pi, Label)
 {
     /// <summary> The label. </summary>
-    public const string Label = $"Glamourer.{nameof(ApiVersion)}";
+    public const string Label = $"Glamourer.{nameof(ApiVersion)}.V2";
 
     /// <inheritdoc cref="IGlamourerApiBase.ApiVersion"/>
     public new (int Major, int Minor) Invoke()

@@ -10,7 +10,7 @@ public sealed class SetItem(DalamudPluginInterface pi)
     : FuncSubscriber<int, byte, ulong, byte, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
-    public const string Label = $"Glamourer.{nameof(SetItem)}";
+    public const string Label = $"Glamourer.{nameof(SetItem)}.V2";
 
     /// <inheritdoc cref="IGlamourerApiItems.SetItem"/>
     public GlamourerApiEc Invoke(int objectIndex, ApiEquipSlot slot, ulong itemId, byte stain, uint key = 0, ApplyFlag flags = ApplyFlag.Once)
