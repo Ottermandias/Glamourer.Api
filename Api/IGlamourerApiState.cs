@@ -111,7 +111,10 @@ public interface IGlamourerApiState
     public GlamourerApiEc RevertToAutomationName(string playerName, uint key, ApplyFlag flags);
 
     /// <summary> Invoked with the game object pointer (if available) whenever an actors tracked state changes. </summary>
-    public event Action<nint>? StateChanged;
+    public event Action<nint> StateChanged;
+
+    /// <summary> Invoked with the game object pointer (if available) whenever an actors tracked state changes, with the type of change. </summary>
+    public event Action<nint, StateChangeType> StateChangedWithType;
 
     /// <summary> Invoked when the player enters or leaves GPose (true => entered GPose, false => left GPose). </summary>
     public event Action<bool>? GPoseChanged;

@@ -265,6 +265,21 @@ public static class StateChanged
         => new(pi, Label, (t => api.StateChanged += t, t => api.StateChanged -= t));
 }
 
+/// <inheritdoc cref="IGlamourerApiState.StateChangedWithType" />
+public static class StateChangedWithType
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Penumbra.{nameof(StateChangedWithType)}";
+
+    /// <summary> Create a new event subscriber. </summary>
+    public static EventSubscriber<nint, StateChangeType> Subscriber(DalamudPluginInterface pi, params Action<nint, StateChangeType>[] actions)
+        => new(pi, Label, actions);
+
+    /// <summary> Create a provider. </summary>
+    public static EventProvider<nint, StateChangeType> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (t => api.StateChangedWithType += t, t => api.StateChangedWithType -= t));
+}
+
 /// <inheritdoc cref="IGlamourerApiState.GPoseChanged" />
 public static class GPoseChanged
 {
