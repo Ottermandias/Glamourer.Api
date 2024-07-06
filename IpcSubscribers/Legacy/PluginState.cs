@@ -5,7 +5,7 @@ using Glamourer.Api.Helpers;
 
 namespace Glamourer.Api.IpcSubscribers.Legacy;
 
-public sealed class ApiVersions(DalamudPluginInterface pi)
+public sealed class ApiVersions(IDalamudPluginInterface pi)
     : FuncSubscriber<(int, int)>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApiVersions)}";

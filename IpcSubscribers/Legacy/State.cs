@@ -6,7 +6,7 @@ using Glamourer.Api.Helpers;
 
 namespace Glamourer.Api.IpcSubscribers.Legacy;
 
-public sealed class Revert(DalamudPluginInterface pi)
+public sealed class Revert(IDalamudPluginInterface pi)
     : ActionSubscriber<string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(Revert)}";
@@ -15,16 +15,16 @@ public sealed class Revert(DalamudPluginInterface pi)
         => base.Invoke(characterName);
 }
 
-public sealed class RevertCharacter(DalamudPluginInterface pi)
-    : ActionSubscriber<Character?>(pi, Label)
+public sealed class RevertCharacter(IDalamudPluginInterface pi)
+    : ActionSubscriber<ICharacter?>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(RevertCharacter)}";
 
-    public new void Invoke(Character? character)
+    public new void Invoke(ICharacter? character)
         => base.Invoke(character);
 }
 
-public sealed class RevertLock(DalamudPluginInterface pi)
+public sealed class RevertLock(IDalamudPluginInterface pi)
     : ActionSubscriber<string, uint>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(RevertLock)}";
@@ -33,16 +33,16 @@ public sealed class RevertLock(DalamudPluginInterface pi)
         => base.Invoke(characterName, key);
 }
 
-public sealed class RevertCharacterLock(DalamudPluginInterface pi)
-    : ActionSubscriber<Character?, uint>(pi, Label)
+public sealed class RevertCharacterLock(IDalamudPluginInterface pi)
+    : ActionSubscriber<ICharacter?, uint>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(RevertCharacterLock)}";
 
-    public new void Invoke(Character? character, uint key)
+    public new void Invoke(ICharacter? character, uint key)
         => base.Invoke(character, key);
 }
 
-public sealed class RevertToAutomation(DalamudPluginInterface pi)
+public sealed class RevertToAutomation(IDalamudPluginInterface pi)
     : FuncSubscriber<string, uint, bool>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(RevertToAutomation)}";
@@ -51,25 +51,25 @@ public sealed class RevertToAutomation(DalamudPluginInterface pi)
         => base.Invoke(characterName, key);
 }
 
-public sealed class RevertToAutomationCharacter(DalamudPluginInterface pi)
-    : FuncSubscriber<Character?, uint, bool>(pi, Label)
+public sealed class RevertToAutomationCharacter(IDalamudPluginInterface pi)
+    : FuncSubscriber<ICharacter?, uint, bool>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(RevertToAutomationCharacter)}";
 
-    public new bool Invoke(Character? character, uint key)
+    public new bool Invoke(ICharacter? character, uint key)
         => base.Invoke(character, key);
 }
 
-public sealed class Unlock(DalamudPluginInterface pi)
-    : FuncSubscriber<Character?, uint, bool>(pi, Label)
+public sealed class Unlock(IDalamudPluginInterface pi)
+    : FuncSubscriber<ICharacter?, uint, bool>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(Unlock)}";
 
-    public new bool Invoke(Character? character, uint key)
+    public new bool Invoke(ICharacter? character, uint key)
         => base.Invoke(character, key);
 }
 
-public sealed class UnlockName(DalamudPluginInterface pi)
+public sealed class UnlockName(IDalamudPluginInterface pi)
     : FuncSubscriber<string, uint, bool>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(UnlockName)}";
@@ -82,12 +82,12 @@ public static class StateChanged
 {
     public const string Label = $"Penumbra.{nameof(StateChanged)}";
 
-    public static EventSubscriber<int, nint, Lazy<string>> Subscriber(DalamudPluginInterface pi,
+    public static EventSubscriber<int, nint, Lazy<string>> Subscriber(IDalamudPluginInterface pi,
         params Action<int, nint, Lazy<string>>[] actions)
         => new(pi, Label, actions);
 }
 
-public sealed class GetAllCustomization(DalamudPluginInterface pi)
+public sealed class GetAllCustomization(IDalamudPluginInterface pi)
     : FuncSubscriber<string, string?>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(GetAllCustomization)}";
@@ -96,16 +96,16 @@ public sealed class GetAllCustomization(DalamudPluginInterface pi)
         => base.Invoke(characterName);
 }
 
-public sealed class GetAllCustomizationFromCharacter(DalamudPluginInterface pi)
-    : FuncSubscriber<Character?, string?>(pi, Label)
+public sealed class GetAllCustomizationFromCharacter(IDalamudPluginInterface pi)
+    : FuncSubscriber<ICharacter?, string?>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(GetAllCustomizationFromCharacter)}";
 
-    public new string? Invoke(Character? character)
+    public new string? Invoke(ICharacter? character)
         => base.Invoke(character);
 }
 
-public sealed class GetAllCustomizationLocked(DalamudPluginInterface pi)
+public sealed class GetAllCustomizationLocked(IDalamudPluginInterface pi)
     : FuncSubscriber<string, uint, string?>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(GetAllCustomizationLocked)}";
@@ -114,16 +114,16 @@ public sealed class GetAllCustomizationLocked(DalamudPluginInterface pi)
         => base.Invoke(characterName, key);
 }
 
-public sealed class GetAllCustomizationFromLockedCharacter(DalamudPluginInterface pi)
-    : FuncSubscriber<Character?, uint, string?>(pi, Label)
+public sealed class GetAllCustomizationFromLockedCharacter(IDalamudPluginInterface pi)
+    : FuncSubscriber<ICharacter?, uint, string?>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(GetAllCustomizationFromLockedCharacter)}";
 
-    public new string? Invoke(Character? character, uint key)
+    public new string? Invoke(ICharacter? character, uint key)
         => base.Invoke(character, key);
 }
 
-public sealed class ApplyAll(DalamudPluginInterface pi)
+public sealed class ApplyAll(IDalamudPluginInterface pi)
     : ActionSubscriber<string, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyAll)}";
@@ -132,7 +132,7 @@ public sealed class ApplyAll(DalamudPluginInterface pi)
         => base.Invoke(characterName, stateBase64);
 }
 
-public sealed class ApplyAllOnce(DalamudPluginInterface pi)
+public sealed class ApplyAllOnce(IDalamudPluginInterface pi)
     : ActionSubscriber<string, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyAllOnce)}";
@@ -141,25 +141,25 @@ public sealed class ApplyAllOnce(DalamudPluginInterface pi)
         => base.Invoke(characterName, stateBase64);
 }
 
-public sealed class ApplyAllToCharacter(DalamudPluginInterface pi)
-    : ActionSubscriber<Character?, string>(pi, Label)
+public sealed class ApplyAllToCharacter(IDalamudPluginInterface pi)
+    : ActionSubscriber<ICharacter?, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyAllToCharacter)}";
 
-    public new void Invoke(Character? character, string stateBase64)
+    public new void Invoke(ICharacter? character, string stateBase64)
         => base.Invoke(character, stateBase64);
 }
 
-public sealed class ApplyAllOnceToCharacter(DalamudPluginInterface pi)
-    : ActionSubscriber<Character?, string>(pi, Label)
+public sealed class ApplyAllOnceToCharacter(IDalamudPluginInterface pi)
+    : ActionSubscriber<ICharacter?, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyAllOnceToCharacter)}";
 
-    public new void Invoke(Character? character, string stateBase64)
+    public new void Invoke(ICharacter? character, string stateBase64)
         => base.Invoke(character, stateBase64);
 }
 
-public sealed class ApplyOnlyEquipment(DalamudPluginInterface pi)
+public sealed class ApplyOnlyEquipment(IDalamudPluginInterface pi)
     : ActionSubscriber<string, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyOnlyEquipment)}";
@@ -168,16 +168,16 @@ public sealed class ApplyOnlyEquipment(DalamudPluginInterface pi)
         => base.Invoke(characterName, stateBase64);
 }
 
-public sealed class ApplyOnlyEquipmentToCharacter(DalamudPluginInterface pi)
-    : ActionSubscriber<Character?, string>(pi, Label)
+public sealed class ApplyOnlyEquipmentToCharacter(IDalamudPluginInterface pi)
+    : ActionSubscriber<ICharacter?, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyOnlyEquipmentToCharacter)}";
 
-    public new void Invoke(Character? character, string stateBase64)
+    public new void Invoke(ICharacter? character, string stateBase64)
         => base.Invoke(character, stateBase64);
 }
 
-public sealed class ApplyOnlyCustomization(DalamudPluginInterface pi)
+public sealed class ApplyOnlyCustomization(IDalamudPluginInterface pi)
     : ActionSubscriber<string, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyOnlyCustomization)}";
@@ -186,16 +186,16 @@ public sealed class ApplyOnlyCustomization(DalamudPluginInterface pi)
         => base.Invoke(characterName, stateBase64);
 }
 
-public sealed class ApplyOnlyCustomizationToCharacter(DalamudPluginInterface pi)
-    : ActionSubscriber<Character?, string>(pi, Label)
+public sealed class ApplyOnlyCustomizationToCharacter(IDalamudPluginInterface pi)
+    : ActionSubscriber<ICharacter?, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyOnlyCustomizationToCharacter)}";
 
-    public new void Invoke(Character? character, string stateBase64)
+    public new void Invoke(ICharacter? character, string stateBase64)
         => base.Invoke(character, stateBase64);
 }
 
-public sealed class ApplyAllLock(DalamudPluginInterface pi)
+public sealed class ApplyAllLock(IDalamudPluginInterface pi)
     : ActionSubscriber<string, string, uint>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyAllLock)}";
@@ -204,16 +204,16 @@ public sealed class ApplyAllLock(DalamudPluginInterface pi)
         => base.Invoke(characterName, stateBase64, key);
 }
 
-public sealed class ApplyAllToCharacterLock(DalamudPluginInterface pi)
-    : ActionSubscriber<Character?, string, uint>(pi, Label)
+public sealed class ApplyAllToCharacterLock(IDalamudPluginInterface pi)
+    : ActionSubscriber<ICharacter?, string, uint>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyAllToCharacterLock)}";
 
-    public new void Invoke(Character? character, string stateBase64, uint key)
+    public new void Invoke(ICharacter? character, string stateBase64, uint key)
         => base.Invoke(character, stateBase64, key);
 }
 
-public sealed class ApplyOnlyEquipmentLock(DalamudPluginInterface pi)
+public sealed class ApplyOnlyEquipmentLock(IDalamudPluginInterface pi)
     : ActionSubscriber<string, string, uint>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyOnlyEquipmentLock)}";
@@ -222,16 +222,16 @@ public sealed class ApplyOnlyEquipmentLock(DalamudPluginInterface pi)
         => base.Invoke(characterName, stateBase64, key);
 }
 
-public sealed class ApplyOnlyEquipmentToCharacterLock(DalamudPluginInterface pi)
-    : ActionSubscriber<Character?, string, uint>(pi, Label)
+public sealed class ApplyOnlyEquipmentToCharacterLock(IDalamudPluginInterface pi)
+    : ActionSubscriber<ICharacter?, string, uint>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyOnlyEquipmentToCharacterLock)}";
 
-    public new void Invoke(Character? character, string stateBase64, uint key)
+    public new void Invoke(ICharacter? character, string stateBase64, uint key)
         => base.Invoke(character, stateBase64, key);
 }
 
-public sealed class ApplyOnlyCustomizationLock(DalamudPluginInterface pi)
+public sealed class ApplyOnlyCustomizationLock(IDalamudPluginInterface pi)
     : ActionSubscriber<string, string, uint>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyOnlyCustomizationLock)}";
@@ -240,11 +240,11 @@ public sealed class ApplyOnlyCustomizationLock(DalamudPluginInterface pi)
         => base.Invoke(characterName, stateBase64, key);
 }
 
-public sealed class ApplyOnlyCustomizationToCharacterLock(DalamudPluginInterface pi)
-    : ActionSubscriber<Character?, string, uint>(pi, Label)
+public sealed class ApplyOnlyCustomizationToCharacterLock(IDalamudPluginInterface pi)
+    : ActionSubscriber<ICharacter?, string, uint>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyOnlyCustomizationToCharacterLock)}";
 
-    public new void Invoke(Character? character, string stateBase64, uint key)
+    public new void Invoke(ICharacter? character, string stateBase64, uint key)
         => base.Invoke(character, stateBase64, key);
 }

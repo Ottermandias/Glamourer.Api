@@ -7,25 +7,25 @@ using Glamourer.Api.Helpers;
 
 namespace Glamourer.Api.IpcSubscribers.Legacy;
 
-public sealed class SetItem(DalamudPluginInterface pi)
-    : FuncSubscriber<Character?, byte, ulong, byte, uint, int>(pi, Label)
+public sealed class SetItem(IDalamudPluginInterface pi)
+    : FuncSubscriber<ICharacter?, byte, ulong, byte, uint, int>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(SetItem)}";
 
-    public new GlamourerApiEc Invoke(Character? character, byte slot, ulong itemId, byte stainId, uint key)
+    public new GlamourerApiEc Invoke(ICharacter? character, byte slot, ulong itemId, byte stainId, uint key)
         => (GlamourerApiEc)base.Invoke(character, slot, itemId, stainId, key);
 }
 
-public sealed class SetItemOnce(DalamudPluginInterface pi)
-    : FuncSubscriber<Character?, byte, ulong, byte, uint, int>(pi, Label)
+public sealed class SetItemOnce(IDalamudPluginInterface pi)
+    : FuncSubscriber<ICharacter?, byte, ulong, byte, uint, int>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(SetItemOnce)}";
 
-    public new GlamourerApiEc Invoke(Character? character, byte slot, ulong itemId, byte stainId, uint key)
+    public new GlamourerApiEc Invoke(ICharacter? character, byte slot, ulong itemId, byte stainId, uint key)
         => (GlamourerApiEc)base.Invoke(character, slot, itemId, stainId, key);
 }
 
-public sealed class SetItemByActorName(DalamudPluginInterface pi)
+public sealed class SetItemByActorName(IDalamudPluginInterface pi)
     : FuncSubscriber<string, byte, ulong, byte, uint, int>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(SetItemByActorName)}";
@@ -34,7 +34,7 @@ public sealed class SetItemByActorName(DalamudPluginInterface pi)
         => (GlamourerApiEc)base.Invoke(actorName, slot, itemId, stainId, key);
 }
 
-public sealed class SetItemOnceByActorName(DalamudPluginInterface pi)
+public sealed class SetItemOnceByActorName(IDalamudPluginInterface pi)
     : FuncSubscriber<string, byte, ulong, byte, uint, int>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(SetItemOnceByActorName)}";

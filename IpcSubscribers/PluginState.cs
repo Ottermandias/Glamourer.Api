@@ -5,7 +5,7 @@ using Glamourer.Api.Helpers;
 namespace Glamourer.Api.IpcSubscribers;
 
 /// <inheritdoc cref="IGlamourerApiBase.ApiVersion"/>
-public sealed class ApiVersion(DalamudPluginInterface pi)
+public sealed class ApiVersion(IDalamudPluginInterface pi)
     : FuncSubscriber<(int, int)>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -16,7 +16,7 @@ public sealed class ApiVersion(DalamudPluginInterface pi)
         => base.Invoke();
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<(int, int)> Provider(DalamudPluginInterface pi, IGlamourerApiBase api)
+    public static FuncProvider<(int, int)> Provider(IDalamudPluginInterface pi, IGlamourerApiBase api)
         => new(pi, Label, () => api.ApiVersion);
 }
 
@@ -27,11 +27,11 @@ public static class Initialized
     public const string Label = $"Glamourer.{nameof(Initialized)}";
 
     /// <summary> Create a new event subscriber. </summary>
-    public static EventSubscriber Subscriber(DalamudPluginInterface pi, params Action[] actions)
+    public static EventSubscriber Subscriber(IDalamudPluginInterface pi, params Action[] actions)
         => new(pi, Label, actions);
 
     /// <summary> Create a provider. </summary>
-    public static EventProvider Provider(DalamudPluginInterface pi)
+    public static EventProvider Provider(IDalamudPluginInterface pi)
         => new(pi, Label);
 }
 
@@ -42,10 +42,10 @@ public static class Disposed
     public const string Label = $"Glamourer.{nameof(Disposed)}";
 
     /// <summary> Create a new event subscriber. </summary>
-    public static EventSubscriber Subscriber(DalamudPluginInterface pi, params Action[] actions)
+    public static EventSubscriber Subscriber(IDalamudPluginInterface pi, params Action[] actions)
         => new(pi, Label, actions);
 
     /// <summary> Create a provider. </summary>
-    public static EventProvider Provider(DalamudPluginInterface pi)
+    public static EventProvider Provider(IDalamudPluginInterface pi)
         => new(pi, Label);
 }

@@ -6,7 +6,7 @@ using Glamourer.Api.Helpers;
 
 namespace Glamourer.Api.IpcSubscribers.Legacy;
 
-public sealed class GetDesignList(DalamudPluginInterface pi)
+public sealed class GetDesignList(IDalamudPluginInterface pi)
     : FuncSubscriber<(string Name, Guid Identifier)[]>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(GetDesignList)}";
@@ -15,7 +15,7 @@ public sealed class GetDesignList(DalamudPluginInterface pi)
         => base.Invoke();
 }
 
-public sealed class ApplyByGuid(DalamudPluginInterface pi)
+public sealed class ApplyByGuid(IDalamudPluginInterface pi)
     : ActionSubscriber<Guid, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyByGuid)}";
@@ -24,7 +24,7 @@ public sealed class ApplyByGuid(DalamudPluginInterface pi)
         => base.Invoke(design, name);
 }
 
-public sealed class ApplyByGuidOnce(DalamudPluginInterface pi)
+public sealed class ApplyByGuidOnce(IDalamudPluginInterface pi)
     : ActionSubscriber<Guid, string>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyByGuidOnce)}";
@@ -33,20 +33,20 @@ public sealed class ApplyByGuidOnce(DalamudPluginInterface pi)
         => base.Invoke(design, name);
 }
 
-public sealed class ApplyByGuidToCharacter(DalamudPluginInterface pi)
-    : ActionSubscriber<Guid, Character?>(pi, Label)
+public sealed class ApplyByGuidToCharacter(IDalamudPluginInterface pi)
+    : ActionSubscriber<Guid, ICharacter?>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyByGuidToCharacter)}";
 
-    public new void Invoke(Guid design, Character? character)
+    public new void Invoke(Guid design, ICharacter? character)
         => base.Invoke(design, character);
 }
 
-public sealed class ApplyByGuidOnceToCharacter(DalamudPluginInterface pi)
-    : ActionSubscriber<Guid, Character?>(pi, Label)
+public sealed class ApplyByGuidOnceToCharacter(IDalamudPluginInterface pi)
+    : ActionSubscriber<Guid, ICharacter?>(pi, Label)
 {
     public const string Label = $"Glamourer.{nameof(ApplyByGuidOnceToCharacter)}";
 
-    public new void Invoke(Guid design, Character? character)
+    public new void Invoke(Guid design, ICharacter? character)
         => base.Invoke(design, character);
 }

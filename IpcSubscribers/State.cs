@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 namespace Glamourer.Api.IpcSubscribers;
 
 /// <inheritdoc cref="IGlamourerApiState.GetState"/>
-public sealed class GetState(DalamudPluginInterface pi)
+public sealed class GetState(IDalamudPluginInterface pi)
     : FuncSubscriber<int, uint, (int, JObject?)>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -21,7 +21,7 @@ public sealed class GetState(DalamudPluginInterface pi)
     }
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<int, uint, (int, JObject?)> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<int, uint, (int, JObject?)> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b) =>
         {
             var (ec, data) = api.GetState(a, b);
@@ -30,7 +30,7 @@ public sealed class GetState(DalamudPluginInterface pi)
 }
 
 /// <inheritdoc cref="IGlamourerApiState.GetStateName"/>
-public sealed class GetStateName(DalamudPluginInterface pi)
+public sealed class GetStateName(IDalamudPluginInterface pi)
     : FuncSubscriber<string, uint, (int, JObject?)>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -44,7 +44,7 @@ public sealed class GetStateName(DalamudPluginInterface pi)
     }
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<string, uint, (int, JObject?)> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<string, uint, (int, JObject?)> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (i, k) =>
         {
             var (ec, data) = api.GetStateName(i, k);
@@ -53,7 +53,7 @@ public sealed class GetStateName(DalamudPluginInterface pi)
 }
 
 /// <inheritdoc cref="IGlamourerApiState.GetStateBase64"/>
-public sealed class GetStateBase64(DalamudPluginInterface pi)
+public sealed class GetStateBase64(IDalamudPluginInterface pi)
     : FuncSubscriber<int, uint, (int, string?)>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -67,7 +67,7 @@ public sealed class GetStateBase64(DalamudPluginInterface pi)
     }
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<int, uint, (int, string?)> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<int, uint, (int, string?)> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b) =>
         {
             var (ec, data) = api.GetStateBase64(a, b);
@@ -76,7 +76,7 @@ public sealed class GetStateBase64(DalamudPluginInterface pi)
 }
 
 /// <inheritdoc cref="IGlamourerApiState.GetStateBase64Name"/>
-public sealed class GetStateBase64Name(DalamudPluginInterface pi)
+public sealed class GetStateBase64Name(IDalamudPluginInterface pi)
     : FuncSubscriber<string, uint, (int, string?)>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -90,7 +90,7 @@ public sealed class GetStateBase64Name(DalamudPluginInterface pi)
     }
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<string, uint, (int, string?)> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<string, uint, (int, string?)> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (i, k) =>
         {
             var (ec, data) = api.GetStateBase64Name(i, k);
@@ -99,7 +99,7 @@ public sealed class GetStateBase64Name(DalamudPluginInterface pi)
 }
 
 /// <inheritdoc cref="IGlamourerApiState.ApplyState"/>
-public sealed class ApplyState(DalamudPluginInterface pi)
+public sealed class ApplyState(IDalamudPluginInterface pi)
     : FuncSubscriber<object, int, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -114,12 +114,12 @@ public sealed class ApplyState(DalamudPluginInterface pi)
         => (GlamourerApiEc)Invoke(base64State, objectIndex, key, (ulong)flags);
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<object, int, uint, ulong, int> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<object, int, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b, c, d) => (int)api.ApplyState(a, b, c, (ApplyFlag)d));
 }
 
 /// <inheritdoc cref="IGlamourerApiState.ApplyStateName"/>
-public sealed class ApplyStateName(DalamudPluginInterface pi)
+public sealed class ApplyStateName(IDalamudPluginInterface pi)
     : FuncSubscriber<object, string, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -134,12 +134,12 @@ public sealed class ApplyStateName(DalamudPluginInterface pi)
         => (GlamourerApiEc)Invoke(base64State, objectName, key, (ulong)flags);
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<object, string, uint, ulong, int> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<object, string, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b, c, d) => (int)api.ApplyStateName(a, b, c, (ApplyFlag)d));
 }
 
 /// <inheritdoc cref="IGlamourerApiState.RevertState"/>
-public sealed class RevertState(DalamudPluginInterface pi)
+public sealed class RevertState(IDalamudPluginInterface pi)
     : FuncSubscriber<int, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -150,12 +150,12 @@ public sealed class RevertState(DalamudPluginInterface pi)
         => (GlamourerApiEc)Invoke(objectIndex, key, (ulong)flags);
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<int, uint, ulong, int> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<int, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b, c) => (int)api.RevertState(a, b, (ApplyFlag)c));
 }
 
 /// <inheritdoc cref="IGlamourerApiState.RevertStateName"/>
-public sealed class RevertStateName(DalamudPluginInterface pi)
+public sealed class RevertStateName(IDalamudPluginInterface pi)
     : FuncSubscriber<string, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -166,12 +166,12 @@ public sealed class RevertStateName(DalamudPluginInterface pi)
         => (GlamourerApiEc)Invoke(objectName, key, (ulong)flags);
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<string, uint, ulong, int> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<string, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b, c) => (int)api.RevertStateName(a, b, (ApplyFlag)c));
 }
 
 /// <inheritdoc cref="IGlamourerApiState.UnlockState"/>
-public sealed class UnlockState(DalamudPluginInterface pi)
+public sealed class UnlockState(IDalamudPluginInterface pi)
     : FuncSubscriber<int, uint, int>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -182,12 +182,12 @@ public sealed class UnlockState(DalamudPluginInterface pi)
         => (GlamourerApiEc)base.Invoke(objectIndex, key);
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<int, uint, int> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<int, uint, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b) => (int)api.UnlockState(a, b));
 }
 
 /// <inheritdoc cref="IGlamourerApiState.UnlockStateName"/>
-public sealed class UnlockStateName(DalamudPluginInterface pi)
+public sealed class UnlockStateName(IDalamudPluginInterface pi)
     : FuncSubscriber<string, uint, int>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -198,12 +198,12 @@ public sealed class UnlockStateName(DalamudPluginInterface pi)
         => (GlamourerApiEc)base.Invoke(objectName, key);
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<string, uint, int> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<string, uint, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b) => (int)api.UnlockStateName(a, b));
 }
 
 /// <inheritdoc cref="IGlamourerApiState.UnlockAll"/>
-public sealed class UnlockAll(DalamudPluginInterface pi)
+public sealed class UnlockAll(IDalamudPluginInterface pi)
     : FuncSubscriber<uint, int>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -214,12 +214,12 @@ public sealed class UnlockAll(DalamudPluginInterface pi)
         => base.Invoke(key);
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<uint, int> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<uint, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, api.UnlockAll);
 }
 
 /// <inheritdoc cref="IGlamourerApiState.RevertToAutomation"/>
-public sealed class RevertToAutomation(DalamudPluginInterface pi)
+public sealed class RevertToAutomation(IDalamudPluginInterface pi)
     : FuncSubscriber<int, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -230,12 +230,12 @@ public sealed class RevertToAutomation(DalamudPluginInterface pi)
         => (GlamourerApiEc)Invoke(objectIndex, key, (ulong)flags);
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<int, uint, ulong, int> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<int, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b, c) => (int)api.RevertToAutomation(a, b, (ApplyFlag)c));
 }
 
 /// <inheritdoc cref="IGlamourerApiState.RevertToAutomationName"/>
-public sealed class RevertToAutomationName(DalamudPluginInterface pi)
+public sealed class RevertToAutomationName(IDalamudPluginInterface pi)
     : FuncSubscriber<string, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
@@ -246,7 +246,7 @@ public sealed class RevertToAutomationName(DalamudPluginInterface pi)
         => (GlamourerApiEc)Invoke(objectName, key, (ulong)flags);
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<string, uint, ulong, int> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static FuncProvider<string, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b, c) => (int)api.RevertToAutomationName(a, b, (ApplyFlag)c));
 }
 
@@ -257,11 +257,11 @@ public static class StateChanged
     public const string Label = $"Penumbra.{nameof(StateChanged)}.V2";
 
     /// <summary> Create a new event subscriber. </summary>
-    public static EventSubscriber<nint> Subscriber(DalamudPluginInterface pi, params Action<nint>[] actions)
+    public static EventSubscriber<nint> Subscriber(IDalamudPluginInterface pi, params Action<nint>[] actions)
         => new(pi, Label, actions);
 
     /// <summary> Create a provider. </summary>
-    public static EventProvider<nint> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static EventProvider<nint> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (t => api.StateChanged += t, t => api.StateChanged -= t));
 }
 
@@ -272,11 +272,11 @@ public static class StateChangedWithType
     public const string Label = $"Penumbra.{nameof(StateChangedWithType)}";
 
     /// <summary> Create a new event subscriber. </summary>
-    public static EventSubscriber<nint, StateChangeType> Subscriber(DalamudPluginInterface pi, params Action<nint, StateChangeType>[] actions)
+    public static EventSubscriber<nint, StateChangeType> Subscriber(IDalamudPluginInterface pi, params Action<nint, StateChangeType>[] actions)
         => new(pi, Label, actions);
 
     /// <summary> Create a provider. </summary>
-    public static EventProvider<nint, StateChangeType> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static EventProvider<nint, StateChangeType> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (t => api.StateChangedWithType += t, t => api.StateChangedWithType -= t));
 }
 
@@ -287,10 +287,10 @@ public static class GPoseChanged
     public const string Label = $"Penumbra.{nameof(GPoseChanged)}";
 
     /// <summary> Create a new event subscriber. </summary>
-    public static EventSubscriber<bool> Subscriber(DalamudPluginInterface pi, params Action<bool>[] actions)
+    public static EventSubscriber<bool> Subscriber(IDalamudPluginInterface pi, params Action<bool>[] actions)
         => new(pi, Label, actions);
 
     /// <summary> Create a provider. </summary>
-    public static EventProvider<bool> Provider(DalamudPluginInterface pi, IGlamourerApiState api)
+    public static EventProvider<bool> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (t => api.GPoseChanged += t, t => api.GPoseChanged -= t));
 }

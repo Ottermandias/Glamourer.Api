@@ -15,7 +15,7 @@ public sealed class EventProvider : IDisposable
     private          ICallGateProvider<object?>? _provider;
     private          Delegate?                   _unsubscriber;
 
-    public EventProvider(DalamudPluginInterface pi, string label, (Action<Action> Add, Action<Action> Del)? subscribe = null)
+    public EventProvider(IDalamudPluginInterface pi, string label, (Action<Action> Add, Action<Action> Del)? subscribe = null)
     {
         _unsubscriber = null;
         _log          = PluginLogHelper.GetLog(pi);
@@ -32,7 +32,7 @@ public sealed class EventProvider : IDisposable
         }
     }
 
-    public EventProvider(DalamudPluginInterface pi, string label, Action<EventProvider> add, Action<EventProvider> del)
+    public EventProvider(IDalamudPluginInterface pi, string label, Action<EventProvider> add, Action<EventProvider> del)
     {
         _unsubscriber = null;
         _log          = PluginLogHelper.GetLog(pi);
@@ -90,7 +90,7 @@ public sealed class EventProvider<T1> : IDisposable
     private          ICallGateProvider<T1, object?>? _provider;
     private          Delegate?                       _unsubscriber;
 
-    public EventProvider(DalamudPluginInterface pi, string label, (Action<Action<T1>> Add, Action<Action<T1>> Del)? subscribe = null)
+    public EventProvider(IDalamudPluginInterface pi, string label, (Action<Action<T1>> Add, Action<Action<T1>> Del)? subscribe = null)
     {
         _unsubscriber = null;
         _log          = PluginLogHelper.GetLog(pi);
@@ -107,7 +107,7 @@ public sealed class EventProvider<T1> : IDisposable
         }
     }
 
-    public EventProvider(DalamudPluginInterface pi, string label, Action<EventProvider<T1>> add, Action<EventProvider<T1>> del)
+    public EventProvider(IDalamudPluginInterface pi, string label, Action<EventProvider<T1>> add, Action<EventProvider<T1>> del)
     {
         _unsubscriber = null;
         _log          = PluginLogHelper.GetLog(pi);
@@ -165,7 +165,7 @@ public sealed class EventProvider<T1, T2> : IDisposable
     private          ICallGateProvider<T1, T2, object?>? _provider;
     private          Delegate?                           _unsubscriber;
 
-    public EventProvider(DalamudPluginInterface pi, string label, (Action<Action<T1, T2>> Add, Action<Action<T1, T2>> Del)? subscribe = null)
+    public EventProvider(IDalamudPluginInterface pi, string label, (Action<Action<T1, T2>> Add, Action<Action<T1, T2>> Del)? subscribe = null)
     {
         _unsubscriber = null;
         _log          = PluginLogHelper.GetLog(pi);
@@ -182,7 +182,7 @@ public sealed class EventProvider<T1, T2> : IDisposable
         }
     }
 
-    public EventProvider(DalamudPluginInterface pi, string label, Action<EventProvider<T1, T2>> add, Action<EventProvider<T1, T2>> del)
+    public EventProvider(IDalamudPluginInterface pi, string label, Action<EventProvider<T1, T2>> add, Action<EventProvider<T1, T2>> del)
     {
         _unsubscriber = null;
         _log          = PluginLogHelper.GetLog(pi);
