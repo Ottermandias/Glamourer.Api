@@ -19,7 +19,7 @@ public enum StateChangeType
     Weapon = 4,
 
     /// <summary> A characters saved state had a stain changed. Data is the old stain id, the new stain id and the slot [(StainId, StainId, EquipSlot)]. </summary>
-    Stain = 5,
+    Stains = 5,
 
     /// <summary> A characters saved state had a crest visibility changed. Data is the old crest visibility, the new crest visibility and the slot [(bool, bool, EquipSlot)]. </summary>
     Crest = 6,

@@ -9,18 +9,18 @@ public interface IGlamourerApiItems
     /// <param name="objectIndex"> The game object index of the actor to be manipulated. </param>
     /// <param name="slot"> The slot to apply the item to. </param>
     /// <param name="itemId"> The (Custom) ID of the item to apply. </param>
-    /// <param name="stain"> The ID of the stain to apply to the item. </param>
+    /// <param name="stains"> The IDs of the stains to apply to the item. </param>
     /// <param name="key"> A key to unlock or lock the state if necessary. </param>
     /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag"/>.)</param>
     /// <returns> ItemInvalid, ActorNotFound, ActorNotHuman, InvalidKey, Success. </returns>
     /// <remarks> The item ID can be a custom item ID in Glamourer's format for models without an associated item, or a normal game item ID. </remarks>
-    public GlamourerApiEc SetItem(int objectIndex, ApiEquipSlot slot, ulong itemId, byte stain, uint key, ApplyFlag flags);
+    public GlamourerApiEc SetItem(int objectIndex, ApiEquipSlot slot, ulong itemId, IReadOnlyList<byte> stains, uint key, ApplyFlag flags);
 
     /// <summary> Set a single item on players. </summary>
     /// <param name="playerName"> The name of the players to be manipulated. </param>
     /// <param name="slot"> The slot to apply the item to. </param>
     /// <param name="itemId"> The (Custom) ID of the item to apply. </param>
-    /// <param name="stain"> The ID of the stain to apply to the item. </param>
+    /// <param name="stains"> The IDs of the stains to apply to the item. </param>
     /// <param name="key"> A key to unlock or lock the state if necessary. </param>
     /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag"/>.)</param>
     /// <returns> ItemInvalid, ActorNotFound, ActorNotHuman, InvalidKey, Success. </returns>
@@ -31,5 +31,5 @@ public interface IGlamourerApiItems
     /// If multiple players of the same name are found, all of them are reverted.<br/>
     /// Prefer to use the index-based function unless you need to get the state of someone currently unavailable.
     /// </remarks>
-    public GlamourerApiEc SetItemName(string playerName, ApiEquipSlot slot, ulong itemId, byte stain, uint key, ApplyFlag flags);
+    public GlamourerApiEc SetItemName(string playerName, ApiEquipSlot slot, ulong itemId, IReadOnlyList<byte> stains, uint key, ApplyFlag flags);
 }
