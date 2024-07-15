@@ -41,4 +41,7 @@ public enum StateChangeType
 
     /// <summary> A characters state was reapplied. Data is null. </summary>
     Reapply = 12,
+
+    /// <summary> A characters saved state had a bonus item changed. Data is the old value, the new value and the slot [(BonusItem, BonusItem, BonusItemFlag)]. </summary>
+    BonusItem = 13,
 }
