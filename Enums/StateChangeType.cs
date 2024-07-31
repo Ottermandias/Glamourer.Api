@@ -18,7 +18,7 @@ public enum StateChangeType
     /// <summary> A characters saved state had its weapons changed. Data is the old mainhand, the old offhand, the new mainhand and the new offhand [(EquipItem, EquipItem, EquipItem, EquipItem)]. </summary>
     Weapon = 4,
 
-    /// <summary> A characters saved state had a stain changed. Data is the old stain id, the new stain id and the slot [(StainId, StainId, EquipSlot)]. </summary>
+    /// <summary> A characters saved state had a stain changed. Data is the old stain id, the new stain id and the slot [(StainIds, StainIds, EquipSlot)]. </summary>
     Stains = 5,
 
     /// <summary> A characters saved state had a crest visibility changed. Data is the old crest visibility, the new crest visibility and the slot [(bool, bool, EquipSlot)]. </summary>
