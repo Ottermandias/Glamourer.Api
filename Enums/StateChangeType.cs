@@ -3,45 +3,45 @@ namespace Glamourer.Api.Enums;
 /// <summary> What type of information changed in a state. </summary>
 public enum StateChangeType
 {
-    /// <summary> A characters saved state had the model id changed. This means everything may have changed. Data is the old model id and the new model id. [(uint, uint)] </summary>
+    /// <summary> A characters saved state had the model id changed. This means everything may have changed. </summary>
     Model = 0,
 
-    /// <summary> A characters saved state had multiple customization values changed. TData is the old customize array and the applied changes. [(Customize, CustomizeFlag)] </summary>
+    /// <summary> A characters saved state had multiple customization values changed. </summary>
     EntireCustomize = 1,
 
-    /// <summary> A characters saved state had a customization value changed. Data is the old value, the new value and the type. [(CustomizeValue, CustomizeValue, CustomizeIndex)]. </summary>
+    /// <summary> A characters saved state had a customization value changed. </summary>
     Customize = 2,
 
-    /// <summary> A characters saved state had an equipment piece changed. Data is the old value, the new value and the slot [(EquipItem, EquipItem, EquipSlot)]. </summary>
+    /// <summary> A characters saved state had an equipment piece changed. </summary>
     Equip = 3,
 
-    /// <summary> A characters saved state had its weapons changed. Data is the old mainhand, the old offhand, the new mainhand and the new offhand [(EquipItem, EquipItem, EquipItem, EquipItem)]. </summary>
+    /// <summary> A characters saved state had its weapons changed. </summary>
     Weapon = 4,
 
-    /// <summary> A characters saved state had a stain changed. Data is the old stain id, the new stain id and the slot [(StainIds, StainIds, EquipSlot)]. </summary>
+    /// <summary> A characters saved state had a stain changed. </summary>
     Stains = 5,
 
-    /// <summary> A characters saved state had a crest visibility changed. Data is the old crest visibility, the new crest visibility and the slot [(bool, bool, EquipSlot)]. </summary>
+    /// <summary> A characters saved state had a crest visibility changed. </summary>
     Crest = 6,
 
-    /// <summary> A characters saved state had its customize parameter changed. Data is the old value, the new value and the type [(CustomizeParameterValue, CustomizeParameterValue, CustomizeParameterFlag)]. </summary>
+    /// <summary> A characters saved state had its customize parameter changed. </summary>
     Parameter = 7,
 
-    /// <summary> A characters saved state had a material color table value changed. Data is the old value, the new value and the index [(Vector3, Vector3, MaterialValueIndex)] or just the index for resets. </summary>
+    /// <summary> A characters saved state had a material color table value changed. </summary>
     MaterialValue = 8,
 
-    /// <summary> A characters saved state had a design applied. This means everything may have changed. Data is the applied design. [DesignBase] </summary>
+    /// <summary> A characters saved state had a design applied. This means everything may have changed. </summary>
     Design = 9,
 
-    /// <summary> A characters saved state had its state reset to its game values. This means everything may have changed. Data is null. </summary>
+    /// <summary> A characters saved state had its state reset to its game values. </summary>
     Reset = 10,
 
-    /// <summary> A characters saved state had a meta toggle changed. Data is the old stain id, the new stain id and the slot [(StainId, StainId, EquipSlot)]. </summary>
+    /// <summary> A characters saved state had a meta toggle changed. </summary>
     Other = 11,
 
     /// <summary> A characters state was reapplied. Data is null. </summary>
     Reapply = 12,
 
-    /// <summary> A characters saved state had a bonus item changed. Data is the old value, the new value and the slot [(BonusItem, BonusItem, BonusItemFlag)]. </summary>
+    /// <summary> A characters saved state had a bonus item changed. </summary>
     BonusItem = 13,
 }
