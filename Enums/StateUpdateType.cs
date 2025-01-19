@@ -33,3 +33,4 @@ public enum StateUpdateType
     /// <summary> A characters save state finished applying all updated slots for game state on gearset change or initial load. </summary>
     Gearset = 9,
 }
+
