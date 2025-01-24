@@ -2,7 +2,7 @@
 
 /// <summary> Application flags for setting the meta state of an actor. </summary>
 [Flags]
-public enum SetMetaFlag : ulong
+public enum MetaFlag : ulong
 {
     Wetness = 0x01,
     HatState = 0x02,

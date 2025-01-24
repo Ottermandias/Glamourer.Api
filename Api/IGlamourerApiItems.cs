@@ -31,7 +31,8 @@ public interface IGlamourerApiItems
     /// If multiple players of the same name are found, all of them are modified.<br/>
     /// Prefer to use the index-based function unless you need to get the state of someone currently unavailable.
     /// </remarks>
-    public GlamourerApiEc SetItemName(string playerName, ApiEquipSlot slot, ulong itemId, IReadOnlyList<byte> stains, uint key, ApplyFlag flags);
+    public GlamourerApiEc SetItemName(string playerName, ApiEquipSlot slot, ulong itemId, IReadOnlyList<byte> stains, uint key,
+        ApplyFlag flags);
 
     /// <summary> Set a single bonus item on an actor. </summary>
     /// <param name="objectIndex"> The game object index of the actor to be manipulated. </param>
@@ -61,19 +62,19 @@ public interface IGlamourerApiItems
 
     /// <summary> Set the defined Meta State flags to the active or inactive state on actor. </summary>
     /// <param name="objectIndex"> The game object index of the actor to be manipulated. </param>
-    /// <param name="types"> The flags defining which Meta State's to update to the new value. </param>
-    /// <param name="newValue"> The new value (true or false) to update to. </param>
+    /// <param name="types"> The flags defining which meta states to update to the new value. This can be multiple at once. </param>
+    /// <param name="newValue"> The new value to update to. </param>
     /// <param name="key"> A key to unlock or lock the state if necessary. </param>
-    /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag"/>.)</param>
+    /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag.Once"/>.)</param>
     /// <returns> ItemInvalid, ActorNotFound, ActorNotHuman, InvalidKey, Success. </returns>
-    public GlamourerApiEc SetMeta(int objectIndex, SetMetaFlag types, bool newValue, uint key, ApplyFlag flags)
+    public GlamourerApiEc SetMeta(int objectIndex, MetaFlag types, bool newValue, uint key, ApplyFlag flags);
 
     /// <summary> Set the defined Meta State flags to the active or inactive state on actor (by name) </summary>
     /// <param name="playerName"> The name of the players to be manipulated. </param>
-    /// <param name="types"> The flags defining which Meta State's to update to the new value. </param>
-    /// <param name="newValue"> The new value (true or false) to update to. </param>
+    /// <param name="types"> The flags defining which meta states to update to the new value. This can be multiple at once. </param>
+    /// <param name="newValue"> The new value to update to. </param>
     /// <param name="key"> A key to unlock or lock the state if necessary. </param>
-    /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag"/>.)</param>
+    /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag.Once"/>.)</param>
     /// <returns> ItemInvalid, ActorNotFound, ActorNotHuman, InvalidKey, Success. </returns>
-    public GlamourerApiEc SetMetaName(string playerName, SetMetaFlag types, bool newValue, uint key, ApplyFlag flags)
+    public GlamourerApiEc SetMetaName(string playerName, MetaFlag types, bool newValue, uint key, ApplyFlag flags);
 }
