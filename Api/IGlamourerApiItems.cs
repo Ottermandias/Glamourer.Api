@@ -67,7 +67,7 @@ public interface IGlamourerApiItems
     /// <param name="key"> A key to unlock or lock the state if necessary. </param>
     /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag.Once"/>.)</param>
     /// <returns> ItemInvalid, ActorNotFound, ActorNotHuman, InvalidKey, Success. </returns>
-    public GlamourerApiEc SetMeta(int objectIndex, MetaFlag types, bool newValue, uint key, ApplyFlag flags);
+    public GlamourerApiEc SetMetaState(int objectIndex, MetaFlag types, bool newValue, uint key, ApplyFlag flags);
 
     /// <summary> Set the defined Meta State flags to the active or inactive state on actor (by name) </summary>
     /// <param name="playerName"> The name of the players to be manipulated. </param>
@@ -76,5 +76,5 @@ public interface IGlamourerApiItems
     /// <param name="key"> A key to unlock or lock the state if necessary. </param>
     /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag.Once"/>.)</param>
     /// <returns> ItemInvalid, ActorNotFound, ActorNotHuman, InvalidKey, Success. </returns>
-    public GlamourerApiEc SetMetaName(string playerName, MetaFlag types, bool newValue, uint key, ApplyFlag flags);
+    public GlamourerApiEc SetMetaStateName(string playerName, MetaFlag types, bool newValue, uint key, ApplyFlag flags);
 }
