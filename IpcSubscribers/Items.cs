@@ -72,3 +72,39 @@ public sealed class SetBonusItemName(IDalamudPluginInterface pi)
     public static FuncProvider<string, byte, ulong, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiItems api)
         => new(pi, Label, (a, b, c, d, e) => (int)api.SetBonusItemName(a, (ApiBonusSlot)b, c, d, (ApplyFlag)e));
 }
+
+/// <inheritdoc cref="IGlamourerApiItems.SetMetaState)"/>
+public sealed class SetMetaState(IDalamudPluginInterface pi)
+    : FuncSubscriber<int, ulong, bool, uint, ulong, int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(SetMetaState)}";
+
+    /// <inheritdoc cref="IGlamourerApiItems.SetMetaState"/>
+    public GlamourerApiEc Invoke(int objectIndex, SetMetaFlag metaStates, bool newValue, uint key = 0, 
+        ApplyFlag flags = ApplyFlag.Once)
+        => (GlamourerApiEc)Invoke(objectIndex, (ulong)metaStates newValue, key, (ulong)flags);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<int, ulong, bool, uint, ulong, int> Provider(IDalamudPluginInterface pi, 
+        IGlamourerApiItems api)
+        => new(pi, Label, (a, b, c, d, e) => (int)api.SetMetaState(a, (SetMetaFlag)b, c, d, (ApplyFlag)e));
+}
+
+/// <inheritdoc cref="IGlamourerApiItems.SetMetaStateName"/>
+public sealed class SetMetaStateName(IDalamudPluginInterface pi)
+    : FuncSubscriber<string, ulong, bool, uint, ulong, int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(SetMetaStateName)}";
+
+    /// <inheritdoc cref="IGlamourerApiItems.SetMetaStateName"/>
+    public GlamourerApiEc Invoke(string objectName, SetMetaFlag metaStates, bool newValue, uint key = 0, 
+        ApplyFlag flags = ApplyFlag.Once)
+        => (GlamourerApiEc)Invoke(objectName, (ulong)metaStates, newValue, key, (ulong)flags);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<string, ulong, bool, uint, ulong, int> Provider(IDalamudPluginInterface pi, 
+        IGlamourerApiItems api)
+        => new(pi, Label, (a, b, c, d, e) => (int)api.SetMetaStateName(a, (SetMetaFlag)b, c, d, (ApplyFlag)e));
+}
