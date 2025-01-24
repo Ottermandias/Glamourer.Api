@@ -281,10 +281,10 @@ public static class StateChangedWithType
 }
 
 /// <inheritdoc cref="IGlamourerApiState.StateFinalized" />
-public static class StateUpdated
+public static class StateFinalized
 {
     /// <summary> The label. </summary>
-    public const string Label = $"Penumbra.{nameof(StateUpdated)}";
+    public const string Label = $"Penumbra.{nameof(StateFinalized)}";
 
     /// <summary> Create a new event subscriber. </summary>
     public static EventSubscriber<nint, StateFinalizationType> Subscriber(IDalamudPluginInterface pi, params Action<nint, StateFinalizationType>[] actions)
