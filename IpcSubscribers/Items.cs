@@ -73,38 +73,38 @@ public sealed class SetBonusItemName(IDalamudPluginInterface pi)
         => new(pi, Label, (a, b, c, d, e) => (int)api.SetBonusItemName(a, (ApiBonusSlot)b, c, d, (ApplyFlag)e));
 }
 
-/// <inheritdoc cref="IGlamourerApiItems.SetMetaState)"/>
-public sealed class SetMetaState(IDalamudPluginInterface pi)
+/// <inheritdoc cref="IGlamourerApiItems.SetMeta)"/>
+public sealed class SetMeta(IDalamudPluginInterface pi)
     : FuncSubscriber<int, ulong, bool, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
-    public const string Label = $"Glamourer.{nameof(SetMetaState)}";
+    public const string Label = $"Glamourer.{nameof(SetMeta)}";
 
-    /// <inheritdoc cref="IGlamourerApiItems.SetMetaState"/>
-    public GlamourerApiEc Invoke(int objectIndex, SetMetaFlag metaStates, bool newValue, uint key = 0, 
+    /// <inheritdoc cref="IGlamourerApiItems.SetMeta"/>
+    public GlamourerApiEc Invoke(int objectIndex, SetMetaFlag types, bool newValue, uint key = 0, 
         ApplyFlag flags = ApplyFlag.Once)
-        => (GlamourerApiEc)Invoke(objectIndex, (ulong)metaStates newValue, key, (ulong)flags);
+        => (GlamourerApiEc)Invoke(objectIndex, (ulong)types newValue, key, (ulong)flags);
 
     /// <summary> Create a provider. </summary>
     public static FuncProvider<int, ulong, bool, uint, ulong, int> Provider(IDalamudPluginInterface pi, 
         IGlamourerApiItems api)
-        => new(pi, Label, (a, b, c, d, e) => (int)api.SetMetaState(a, (SetMetaFlag)b, c, d, (ApplyFlag)e));
+        => new(pi, Label, (a, b, c, d, e) => (int)api.SetMeta(a, (SetMetaFlag)b, c, d, (ApplyFlag)e));
 }
 
-/// <inheritdoc cref="IGlamourerApiItems.SetMetaStateName"/>
-public sealed class SetMetaStateName(IDalamudPluginInterface pi)
+/// <inheritdoc cref="IGlamourerApiItems.SetMetaName"/>
+public sealed class SetMetaName(IDalamudPluginInterface pi)
     : FuncSubscriber<string, ulong, bool, uint, ulong, int>(pi, Label)
 {
     /// <summary> The label. </summary>
-    public const string Label = $"Glamourer.{nameof(SetMetaStateName)}";
+    public const string Label = $"Glamourer.{nameof(SetMetaName)}";
 
-    /// <inheritdoc cref="IGlamourerApiItems.SetMetaStateName"/>
-    public GlamourerApiEc Invoke(string objectName, SetMetaFlag metaStates, bool newValue, uint key = 0, 
+    /// <inheritdoc cref="IGlamourerApiItems.SetMetaName"/>
+    public GlamourerApiEc Invoke(string objectName, SetMetaFlag types, bool newValue, uint key = 0, 
         ApplyFlag flags = ApplyFlag.Once)
-        => (GlamourerApiEc)Invoke(objectName, (ulong)metaStates, newValue, key, (ulong)flags);
+        => (GlamourerApiEc)Invoke(objectName, (ulong)types, newValue, key, (ulong)flags);
 
     /// <summary> Create a provider. </summary>
     public static FuncProvider<string, ulong, bool, uint, ulong, int> Provider(IDalamudPluginInterface pi, 
         IGlamourerApiItems api)
-        => new(pi, Label, (a, b, c, d, e) => (int)api.SetMetaStateName(a, (SetMetaFlag)b, c, d, (ApplyFlag)e));
+        => new(pi, Label, (a, b, c, d, e) => (int)api.SetMetaName(a, (SetMetaFlag)b, c, d, (ApplyFlag)e));
 }

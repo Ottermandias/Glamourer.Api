@@ -61,19 +61,19 @@ public interface IGlamourerApiItems
 
     /// <summary> Set the defined Meta State flags to the active or inactive state on actor. </summary>
     /// <param name="objectIndex"> The game object index of the actor to be manipulated. </param>
-    /// <param name="metaStates"> The flags defining which Meta State's to update to the new value. </param>
+    /// <param name="types"> The flags defining which Meta State's to update to the new value. </param>
     /// <param name="newValue"> The new value (true or false) to update to. </param>
     /// <param name="key"> A key to unlock or lock the state if necessary. </param>
     /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag"/>.)</param>
     /// <returns> ItemInvalid, ActorNotFound, ActorNotHuman, InvalidKey, Success. </returns>
-    public GlamourerApiEc SetMetaState(int objectIndex, SetMetaFlag metaStates, bool newValue, uint key, ApplyFlag flags)
+    public GlamourerApiEc SetMeta(int objectIndex, SetMetaFlag types, bool newValue, uint key, ApplyFlag flags)
 
     /// <summary> Set the defined Meta State flags to the active or inactive state on actor (by name) </summary>
     /// <param name="playerName"> The name of the players to be manipulated. </param>
-    /// <param name="metaStates"> The flags defining which Meta State's to update to the new value. </param>
+    /// <param name="types"> The flags defining which Meta State's to update to the new value. </param>
     /// <param name="newValue"> The new value (true or false) to update to. </param>
     /// <param name="key"> A key to unlock or lock the state if necessary. </param>
     /// <param name="flags"> The flags used for the reversion. Respects Once (see <see cref="ApplyFlag"/>.)</param>
     /// <returns> ItemInvalid, ActorNotFound, ActorNotHuman, InvalidKey, Success. </returns>
-    public GlamourerApiEc SetMetaStateName(string playerName, SetMetaFlag metaStates, bool newValue, uint key, ApplyFlag flags)
+    public GlamourerApiEc SetMetaName(string playerName, SetMetaFlag types, bool newValue, uint key, ApplyFlag flags)
 }
