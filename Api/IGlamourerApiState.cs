@@ -116,6 +116,9 @@ public interface IGlamourerApiState
     /// <summary> Invoked with the game object pointer (if available) whenever an actors tracked state changes, with the type of change. </summary>
     public event Action<nint, StateChangeType> StateChangedWithType;
 
+    /// <summary> Invoked with the game object pointer (if available) whenever an actors tracked state finalizes a grouped change consisting of multiple smaller changes. </summary>
+    public event Action<nint, StateFinalizationType> StateFinalized;
+
     /// <summary> Invoked when the player enters or leaves GPose (true => entered GPose, false => left GPose). </summary>
     public event Action<bool>? GPoseChanged;
 }
