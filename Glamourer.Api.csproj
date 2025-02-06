@@ -7,9 +7,9 @@
         <Company></Company>
         <Product>Glamourer</Product>
         <Copyright>Copyright © 2024</Copyright>
-        <FileVersion>2.2.0.0</FileVersion>
-        <AssemblyVersion>2.2.0.0</AssemblyVersion>
-        <PackageVersion>2.2.0</PackageVersion>
+        <FileVersion>2.4.0.0</FileVersion>
+        <AssemblyVersion>2.4.0.0</AssemblyVersion>
+        <PackageVersion>2.4.0</PackageVersion>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <OutputPath>bin\$(Configuration)\</OutputPath>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
