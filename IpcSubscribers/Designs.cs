@@ -21,6 +21,23 @@ public sealed class GetDesignList(IDalamudPluginInterface pi)
         => new(pi, Label, api.GetDesignList);
 }
 
+/// <inheritdoc cref="IGlamourerApiDesigns.GetDesignListExtended"/>
+public sealed class GetDesignListExtended(IDalamudPluginInterface pi)
+    : FuncSubscriber<Dictionary<Guid, (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb)>>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(GetDesignListExtended)}";
+
+    /// <inheritdoc cref="IGlamourerApiDesigns.GetDesignList"/>
+    public new Dictionary<Guid, (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb)> Invoke()
+        => base.Invoke();
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<Dictionary<Guid, (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb)>> Provider(
+        IDalamudPluginInterface pi, IGlamourerApiDesigns api)
+        => new(pi, Label, api.GetDesignListExtended);
+}
+
 /// <inheritdoc cref="IGlamourerApiDesigns.ApplyDesign"/>
 public sealed class ApplyDesign(IDalamudPluginInterface pi) : FuncSubscriber<Guid, int, uint, ulong, int>(pi, Label)
 {

@@ -9,6 +9,10 @@ public interface IGlamourerApiDesigns
     /// <returns> A dictionary of all designs from their GUID to their current display name. </returns>
     public Dictionary<Guid, string> GetDesignList();
 
+    /// <summary> Obtain a list of all available designs with some display information for the designs. </summary>
+    /// <returns> A dictionary of all designs from their GUID to their current display name. </returns>
+    public Dictionary<Guid, (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb)> GetDesignListExtended();
+
     /// <summary> Apply an existing design to an actor.  </summary>
     /// <param name="designId"> The GUID of the design to apply. </param>
     /// <param name="objectIndex"> The game object index of the actor to be manipulated. </param>

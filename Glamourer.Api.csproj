@@ -3,9 +3,9 @@
         <AssemblyTitle>Glamourer.Api</AssemblyTitle>
         <Product>Glamourer</Product>
         <Copyright>Copyright © 2025</Copyright>
-        <FileVersion>2.4.1.0</FileVersion>
-        <AssemblyVersion>2.4.1.0</AssemblyVersion>
-        <PackageVersion>2.4.1</PackageVersion>
+        <FileVersion>2.5.0.0</FileVersion>
+        <AssemblyVersion>2.5.0.0</AssemblyVersion>
+        <PackageVersion>2.5.0</PackageVersion>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <OutputPath>bin\$(Configuration)\</OutputPath>
     </PropertyGroup>
