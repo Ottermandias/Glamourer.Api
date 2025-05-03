@@ -13,6 +13,11 @@ public interface IGlamourerApiDesigns
     /// <returns> A dictionary of all designs from their GUID to their current display name. </returns>
     public Dictionary<Guid, (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb)> GetDesignListExtended();
 
+    /// <summary> Obtain the additional data returned by <seealso cref="GetDesignListExtended"/> for a specific design. </summary>
+    /// <param name="design"> The GUID of the design to query. </param>
+    /// <returns> The additional data of the design if it exists, empty data otherwise. </returns>
+    public (string DisplayName, string FullPath, uint DisplayColor, bool ShowInQdb) GetExtendedDesignData(Guid design);
+
     /// <summary> Apply an existing design to an actor.  </summary>
     /// <param name="designId"> The GUID of the design to apply. </param>
     /// <param name="objectIndex"> The game object index of the actor to be manipulated. </param>
@@ -35,9 +40,14 @@ public interface IGlamourerApiDesigns
     /// </remarks>
     public GlamourerApiEc ApplyDesignName(Guid designId, string playerName, uint key, ApplyFlag flags);
 
-    /// <summary> Add a new design and write it to disk.  </summary>
-    /// <param name="designInput"> The content of the design in base64 or JSON object format. </param>
+    /// <summary> Add a new design and write it to disk. </summary>
+    /// <param name="designInput"> The content of the design in Base64 or JSON object format. </param>
     /// <param name="name"> The name of the design to be created. </param>
-    /// <returns> CouldNotParse, Success; along with the Guid of the newly created design upon success. </returns>
-    public (GlamourerApiEc, Guid?) AddDesign(string designInput, string name);
+    /// <returns> CouldNotParse on failure to parse, Success; along with the GUID of the newly created design upon success or a 0-GUID otherwise. </returns>
+    public (GlamourerApiEc, Guid) AddDesign(string designInput, string name);
+
+    /// <summary> Obtain the Base64 string of a design. </summary>
+    /// <param name="design"> The GUID of the design to query. </param>
+    /// <returns> A Base64 string of the design data on success or null. </returns>
+    public string? GetDesignBase64(Guid design);
 }

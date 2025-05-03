@@ -38,6 +38,23 @@ public sealed class GetDesignListExtended(IDalamudPluginInterface pi)
         => new(pi, Label, api.GetDesignListExtended);
 }
 
+/// <inheritdoc cref="IGlamourerApiDesigns.GetExtendedDesignData"/>
+public sealed class GetExtendedDesignData(IDalamudPluginInterface pi)
+    : FuncSubscriber<Guid, (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb)>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(GetExtendedDesignData)}";
+
+    /// <inheritdoc cref="IGlamourerApiDesigns.GetExtendedDesignData"/>
+    public (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb) Invoke(Guid id)
+        => base.Invoke(id);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<Guid, (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb)> Provider(
+        IDalamudPluginInterface pi, IGlamourerApiDesigns api)
+        => new(pi, Label, api.GetExtendedDesignData);
+}
+
 /// <inheritdoc cref="IGlamourerApiDesigns.ApplyDesign"/>
 public sealed class ApplyDesign(IDalamudPluginInterface pi) : FuncSubscriber<Guid, int, uint, ulong, int>(pi, Label)
 {
@@ -66,4 +83,26 @@ public sealed class ApplyDesignName(IDalamudPluginInterface pi) : FuncSubscriber
     /// <summary> Create a provider. </summary>
     public static FuncProvider<Guid, string, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiDesigns api)
         => new(pi, Label, (a, b, c, d) => (int)api.ApplyDesignName(a, b, c, (ApplyFlag)d));
+}
+
+/// <inheritdoc cref="IGlamourerApiDesigns.AddDesign"/>
+public sealed class AddDesign(IDalamudPluginInterface pi) : FuncSubscriber<string, string, (uint, Guid)>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(AddDesign)}";
+
+    /// <inheritdoc cref="IGlamourerApiDesigns.AddDesign"/>
+    public GlamourerApiEc Invoke(string designData, string designName, out Guid createdGuid)
+    {
+        (var ec, createdGuid) = Invoke(designData, designName);
+        return (GlamourerApiEc)ec;
+    }
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<string, string, (uint, Guid)> Provider(IDalamudPluginInterface pi, IGlamourerApiDesigns api)
+        => new(pi, Label, (a, b) =>
+        {
+            var (ec, guid) = api.AddDesign(a, b);
+            return ((uint)ec, guid);
+        });
 }
