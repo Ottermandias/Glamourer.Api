@@ -1,4 +1,5 @@
 ﻿using Glamourer.Api.Enums;
+using Newtonsoft.Json.Linq;
 
 namespace Glamourer.Api.Api;
 
@@ -14,9 +15,9 @@ public interface IGlamourerApiDesigns
     public Dictionary<Guid, (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb)> GetDesignListExtended();
 
     /// <summary> Obtain the additional data returned by <seealso cref="GetDesignListExtended"/> for a specific design. </summary>
-    /// <param name="design"> The GUID of the design to query. </param>
+    /// <param name="designId"> The GUID of the design to query. </param>
     /// <returns> The additional data of the design if it exists, empty data otherwise. </returns>
-    public (string DisplayName, string FullPath, uint DisplayColor, bool ShowInQdb) GetExtendedDesignData(Guid design);
+    public (string DisplayName, string FullPath, uint DisplayColor, bool ShowInQdb) GetExtendedDesignData(Guid designId);
 
     /// <summary> Apply an existing design to an actor.  </summary>
     /// <param name="designId"> The GUID of the design to apply. </param>
@@ -46,8 +47,18 @@ public interface IGlamourerApiDesigns
     /// <returns> CouldNotParse on failure to parse, Success; along with the GUID of the newly created design upon success or a 0-GUID otherwise. </returns>
     public (GlamourerApiEc, Guid) AddDesign(string designInput, string name);
 
+    /// <summary> Delete an existing design. </summary>
+    /// <param name="designId"> The GUID of the design to be deleted. </param>
+    /// <returns> Success or NothingDone. </returns>
+    public GlamourerApiEc DeleteDesign(Guid designId);
+
     /// <summary> Obtain the Base64 string of a design. </summary>
-    /// <param name="design"> The GUID of the design to query. </param>
+    /// <param name="designId"> The GUID of the design to query. </param>
     /// <returns> A Base64 string of the design data on success or null. </returns>
-    public string? GetDesignBase64(Guid design);
+    public string? GetDesignBase64(Guid designId);
+
+    /// <summary> Obtain a NewtonsoftJson JObject of a design. </summary>
+    /// <param name="designId"> The GUID of the design to query. </param>
+    /// <returns> A JObject containing the designs data on success or null. </returns>
+    public JObject? GetDesignJObject(Guid designId);
 }

@@ -2,6 +2,7 @@
 using Glamourer.Api.Api;
 using Glamourer.Api.Enums;
 using Glamourer.Api.Helpers;
+using Newtonsoft.Json.Linq;
 
 namespace Glamourer.Api.IpcSubscribers;
 
@@ -86,7 +87,7 @@ public sealed class ApplyDesignName(IDalamudPluginInterface pi) : FuncSubscriber
 }
 
 /// <inheritdoc cref="IGlamourerApiDesigns.AddDesign"/>
-public sealed class AddDesign(IDalamudPluginInterface pi) : FuncSubscriber<string, string, (uint, Guid)>(pi, Label)
+public sealed class AddDesign(IDalamudPluginInterface pi) : FuncSubscriber<string, string, (int, Guid)>(pi, Label)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(AddDesign)}";
@@ -99,10 +100,55 @@ public sealed class AddDesign(IDalamudPluginInterface pi) : FuncSubscriber<strin
     }
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<string, string, (uint, Guid)> Provider(IDalamudPluginInterface pi, IGlamourerApiDesigns api)
+    public static FuncProvider<string, string, (int, Guid)> Provider(IDalamudPluginInterface pi, IGlamourerApiDesigns api)
         => new(pi, Label, (a, b) =>
         {
             var (ec, guid) = api.AddDesign(a, b);
-            return ((uint)ec, guid);
+            return ((int)ec, guid);
         });
+}
+
+/// <inheritdoc cref="IGlamourerApiDesigns.DeleteDesign"/>
+public sealed class DeleteDesign(IDalamudPluginInterface pi) : FuncSubscriber<Guid, int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(DeleteDesign)}";
+
+    /// <inheritdoc cref="IGlamourerApiDesigns.DeleteDesign"/>
+    public new GlamourerApiEc Invoke(Guid designId)
+        => (GlamourerApiEc)base.Invoke(designId);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<Guid, int> Provider(IDalamudPluginInterface pi, IGlamourerApiDesigns api)
+        => new(pi, Label, a => (int)api.DeleteDesign(a));
+}
+
+/// <inheritdoc cref="IGlamourerApiDesigns.GetDesignBase64"/>
+public sealed class GetDesignBase64(IDalamudPluginInterface pi) : FuncSubscriber<Guid, string?>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(GetDesignBase64)}";
+
+    /// <inheritdoc cref="IGlamourerApiDesigns.GetDesignBase64"/>
+    public new string? Invoke(Guid designId)
+        => base.Invoke(designId);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<Guid, string?> Provider(IDalamudPluginInterface pi, IGlamourerApiDesigns api)
+        => new(pi, Label, api.GetDesignBase64);
+}
+
+/// <inheritdoc cref="IGlamourerApiDesigns.GetDesignJObject"/>
+public sealed class GetDesignJObject(IDalamudPluginInterface pi) : FuncSubscriber<Guid, JObject?>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(GetDesignJObject)}";
+
+    /// <inheritdoc cref="IGlamourerApiDesigns.GetDesignJObject"/>
+    public new JObject? Invoke(Guid designId)
+        => base.Invoke(designId);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<Guid, JObject?> Provider(IDalamudPluginInterface pi, IGlamourerApiDesigns api)
+        => new(pi, Label, api.GetDesignJObject);
 }
