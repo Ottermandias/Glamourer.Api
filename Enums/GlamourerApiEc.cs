@@ -26,4 +26,7 @@ public enum GlamourerApiEc
 
     /// <summary> The provided object could not be converted into a valid Glamourer state to apply. </summary>
     InvalidState,
+
+    /// <summary> The provided design input could not be parsed. </summary>
+    CouldNotParse
 }

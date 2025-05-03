@@ -34,4 +34,10 @@ public interface IGlamourerApiDesigns
     /// Prefer to use the index-based function unless you need to get the state of someone currently unavailable.
     /// </remarks>
     public GlamourerApiEc ApplyDesignName(Guid designId, string playerName, uint key, ApplyFlag flags);
+
+    /// <summary> Add a new design and write it to disk.  </summary>
+    /// <param name="designInput"> The content of the design in base64 or JSON object format. </param>
+    /// <param name="name"> The name of the design to be created. </param>
+    /// <returns> CouldNotParse, Success; along with the Guid of the newly created design upon success. </returns>
+    public (GlamourerApiEc, Guid?) AddDesign(string designInput, string name);
 }
