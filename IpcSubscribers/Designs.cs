@@ -47,7 +47,7 @@ public sealed class GetExtendedDesignData(IDalamudPluginInterface pi)
     public const string Label = $"Glamourer.{nameof(GetExtendedDesignData)}";
 
     /// <inheritdoc cref="IGlamourerApiDesigns.GetExtendedDesignData"/>
-    public (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb) Invoke(Guid id)
+    public new (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb) Invoke(Guid id)
         => base.Invoke(id);
 
     /// <summary> Create a provider. </summary>
