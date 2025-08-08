@@ -4,8 +4,9 @@
 [Flags]
 public enum MetaFlag : ulong
 {
-    Wetness = 0x01,
-    HatState = 0x02,
-    VisorState = 0x04,
+    Wetness     = 0x01,
+    HatState    = 0x02,
+    VisorState  = 0x04,
     WeaponState = 0x08,
+    EarState    = 0x10,
 }
