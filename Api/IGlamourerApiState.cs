@@ -79,6 +79,12 @@ public interface IGlamourerApiState
     /// <returns> ActorNotFound, InvalidKey, Success, NothingDone. </returns>
     public GlamourerApiEc UnlockState(int objectIndex, uint key);
 
+    /// <summary> Returns whether the Glamourer state of an actor has been locked with the supplied key. </summary>
+    /// <param name="objectIndex"> The game object index of the actor to be checked. </param>
+    /// <param name="key"> A key to unlock the state. </param>
+    /// <returns> ActorNotFound, InvalidState, Success. </returns>
+    public (GlamourerApiEc, bool?) IsUnlocked(int objectIndex, uint key);
+    
     /// <summary> Unlock the Glamourer state of players with a key. </summary>
     /// <param name="playerName"> The name of the players to be unlocked. </param>
     /// <param name="key"> A key to unlock the state. </param>
@@ -122,3 +128,4 @@ public interface IGlamourerApiState
     /// <summary> Invoked when the player enters or leaves GPose (true => entered GPose, false => left GPose). </summary>
     public event Action<bool>? GPoseChanged;
 }
+
