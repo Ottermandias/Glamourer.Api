@@ -186,6 +186,22 @@ public sealed class UnlockState(IDalamudPluginInterface pi)
         => new(pi, Label, (a, b) => (int)api.UnlockState(a, b));
 }
 
+/// <inheritdoc cref="IGlamourerApiState.IsUnlocked"/>
+public sealed class IsUnlocked(IDalamudPluginInterface pi)
+    : FuncSubscriber<int, uint, (GlamourerApiEc, bool?)>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(IsUnlocked)}";
+
+    /// <inheritdoc cref="IGlamourerApiState.IsUnlocked"/>
+    public new (GlamourerApiEc, bool?) Invoke(int objectIndex, uint key = 0)
+        => base.Invoke(objectIndex, key);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<int, uint, (GlamourerApiEc, bool?)> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (a, b) => api.IsUnlocked(a, b));
+}
+
 /// <inheritdoc cref="IGlamourerApiState.UnlockStateName"/>
 public sealed class UnlockStateName(IDalamudPluginInterface pi)
     : FuncSubscriber<string, uint, int>(pi, Label)
@@ -309,3 +325,4 @@ public static class GPoseChanged
     public static EventProvider<bool> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (t => api.GPoseChanged += t, t => api.GPoseChanged -= t));
 }
+
