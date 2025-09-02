@@ -185,21 +185,25 @@ public sealed class UnlockState(IDalamudPluginInterface pi)
     public static FuncProvider<int, uint, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (a, b) => (int)api.UnlockState(a, b));
 }
-
-/// <inheritdoc cref="IGlamourerApiState.IsUnlocked"/>
-public sealed class IsUnlocked(IDalamudPluginInterface pi)
-    : FuncSubscriber<int, uint, (GlamourerApiEc, bool?)>(pi, Label)
+/// <inheritdoc cref="IGlamourerApiState.CanUnlock"/>
+public sealed class CanUnlock(IDalamudPluginInterface pi)
+    : FuncSubscriber<int, uint, bool, bool, int>(pi, Label)
 {
     /// <summary> The label. </summary>
-    public const string Label = $"Glamourer.{nameof(IsUnlocked)}";
+    public const string Label = $"Glamourer.{nameof(CanUnlock)}";
 
-    /// <inheritdoc cref="IGlamourerApiState.IsUnlocked"/>
-    public new (GlamourerApiEc, bool?) Invoke(int objectIndex, uint key = 0)
-        => base.Invoke(objectIndex, key);
+    /// <inheritdoc cref="IGlamourerApiState.CanUnlock"/>
+    public new GlamourerApiEc Invoke(int objectIndex, uint key, out bool isLocked, out bool canUnlock)
+    {
+        isLocked = false;
+        canUnlock = false;
+        var ec = base.Invoke(objectIndex, key, isLocked, canUnlock);
+        return (GlamourerApiEc)ec; 
+    }
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<int, uint, (GlamourerApiEc, bool?)> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
-        => new(pi, Label, (a, b) => api.IsUnlocked(a, b));
+    public static FuncProvider<int, uint, bool, bool, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (a, b, c, d) => (int)api.CanUnlock(a, b, out c, out d));
 }
 
 /// <inheritdoc cref="IGlamourerApiState.UnlockStateName"/>
@@ -325,4 +329,5 @@ public static class GPoseChanged
     public static EventProvider<bool> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
         => new(pi, Label, (t => api.GPoseChanged += t, t => api.GPoseChanged -= t));
 }
+
 
