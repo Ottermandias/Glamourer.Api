@@ -138,6 +138,38 @@ public sealed class ApplyStateName(IDalamudPluginInterface pi)
         => new(pi, Label, (a, b, c, d) => (int)api.ApplyStateName(a, b, c, (ApplyFlag)d));
 }
 
+/// <inheritdoc cref="IGlamourerApiState.ReapplyState"/>
+public sealed class ReapplyState(IDalamudPluginInterface pi)
+    : FuncSubscriber<int, uint, ulong, int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(ReapplyState)}";
+
+    /// <inheritdoc cref="IGlamourerApiState.ReapplyState"/>
+    public GlamourerApiEc Invoke(int objectIndex, uint key = 0, ApplyFlag flags = ApplyFlagEx.StateDefault)
+        => (GlamourerApiEc)Invoke(objectIndex, key, (ulong)flags);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<int, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (a, b, c) => (int)api.ReapplyState(a, b, (ApplyFlag)c));
+}
+
+/// <inheritdoc cref="IGlamourerApiState.ReapplyStateName"/>
+public sealed class ReapplyStateName(IDalamudPluginInterface pi)
+    : FuncSubscriber<string, uint, ulong, int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(ReapplyStateName)}";
+
+    /// <inheritdoc cref="IGlamourerApiState.ReapplyStateName"/>
+    public GlamourerApiEc Invoke(string objectName, uint key = 0, ApplyFlag flags = ApplyFlagEx.StateDefault)
+        => (GlamourerApiEc)Invoke(objectName, key, (ulong)flags);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<string, uint, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (a, b, c) => (int)api.ReapplyStateName(a, b, (ApplyFlag)c));
+}
+
 /// <inheritdoc cref="IGlamourerApiState.RevertState"/>
 public sealed class RevertState(IDalamudPluginInterface pi)
     : FuncSubscriber<int, uint, ulong, int>(pi, Label)
