@@ -53,6 +53,26 @@ public interface IGlamourerApiState
     /// </remarks>
     public GlamourerApiEc ApplyStateName(object applyState, string playerName, uint key, ApplyFlag flags);
 
+    /// <summary> Reapply the Glamourer state of an actor. </summary>
+    /// <param name="objectIndex"> The game object index of the actor to reapply. </param>
+    /// <param name="key"> A key to lock the state if necessary. </param>
+    /// <param name="flags"> The flags used for the application. Respects Once and Lock (see <see cref="ApplyFlag"/>.) </param>
+    /// <returns> ActorNotFound, InvalidKey, ActorNotHuman, Success. </returns>
+    public GlamourerApiEc ReapplyState(int objectIndex, uint key, ApplyFlag flags);
+
+    /// <summary> Reapply the Glamourer state of players. </summary>
+    /// <param name="playerName"> The name of the players to reapply. </param>
+    /// <param name="key"> A key to lock the state if necessary. </param>
+    /// <param name="flags"> The flags used for the application. Respects Once and Lock (see <see cref="ApplyFlag"/>.) </param>
+    /// <returns> ActorNotFound, InvalidKey, ActorNotHuman, Success. </returns>
+    /// <remarks>
+    /// The player does not have to be currently available as long as he has a persisted Glamourer state.<br/>
+    /// Only players are checked for name equality, no NPCs.<br/>
+    /// If multiple players of the same name are found, all of them are manipulated.<br/>
+    /// Prefer to use the index-based function unless you need to get the state of someone currently unavailable.
+    /// </remarks>
+    public GlamourerApiEc ReapplyStateName(string playerName, uint key, ApplyFlag flags);
+
     /// <summary> Revert the Glamourer state of an actor to Game state. </summary>
     /// <param name="objectIndex"> The game object index of the actor to be manipulated. </param>
     /// <param name="key"> A key to unlock the state if necessary. </param>
