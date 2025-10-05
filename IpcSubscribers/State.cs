@@ -282,6 +282,21 @@ public sealed class RevertToAutomationName(IDalamudPluginInterface pi)
         => new(pi, Label, (a, b, c) => (int)api.RevertToAutomationName(a, b, (ApplyFlag)c));
 }
 
+/// <inheritdoc cref="IGlamourerApiState.AutoReloadGearChanged" />
+public static class AutoReloadGearChanged
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(AutoReloadGearChanged)}";
+
+    /// <summary> Create a new event subscriber. </summary>
+    public static EventSubscriber<bool> Subscriber(IDalamudPluginInterface pi, params Action<bool>[] actions)
+        => new(pi, Label, actions);
+
+    /// <summary> Create a provider. </summary>
+    public static EventProvider<bool> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (t => api.AutoReloadGearChanged += t, t => api.AutoReloadGearChanged -= t));
+}
+
 /// <inheritdoc cref="IGlamourerApiState.StateChanged" />
 public static class StateChanged
 {

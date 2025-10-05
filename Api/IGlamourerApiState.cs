@@ -141,4 +141,7 @@ public interface IGlamourerApiState
 
     /// <summary> Invoked when the player enters or leaves GPose (true => entered GPose, false => left GPose). </summary>
     public event Action<bool>? GPoseChanged;
+
+    /// <summary> An event that triggers when the auto-reload gear setting changes. </summary>
+    public event Action<bool>? AutoReloadGearChanged;
 }

@@ -8,4 +8,10 @@ public interface IGlamourerApiBase
     /// Major version changes indicate incompatibilities, minor version changes are backward-compatible additions.
     /// </summary>
     public (int Major, int Minor) ApiVersion { get; }
+
+    /// <summary>
+    /// Get the current state of AutoRedrawEquipOnChanges setting in Glamourer configuration.
+    /// Determines whether Glamourer handles ReapplyState calls upon mod option changes or not.
+    /// </summary>
+    public bool AutoReloadGearEnabled { get; }
 }
