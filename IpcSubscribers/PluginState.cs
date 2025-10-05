@@ -20,6 +20,22 @@ public sealed class ApiVersion(IDalamudPluginInterface pi)
         => new(pi, Label, () => api.ApiVersion);
 }
 
+/// <inheritdoc cref="IGlamourerApiBase.AutoReloadGearEnabled"/>
+public sealed class AutoReloadGearEnabled(IDalamudPluginInterface pi)
+    : FuncSubscriber<bool>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(AutoReloadGearEnabled)}";
+
+    /// <inheritdoc cref="IGlamourerApiBase.AutoReloadGearEnabled"/>
+    public new bool Invoke()
+        => base.Invoke();
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<bool> Provider(IDalamudPluginInterface pi, IGlamourerApiBase api)
+        => new(pi, Label, () => api.AutoReloadGearEnabled);
+}
+
 /// <summary> Triggered when the Glamourer API is initialized and ready. </summary>
 public static class Initialized
 {
