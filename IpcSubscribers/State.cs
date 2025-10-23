@@ -202,6 +202,22 @@ public sealed class UnlockStateName(IDalamudPluginInterface pi)
         => new(pi, Label, (a, b) => (int)api.UnlockStateName(a, b));
 }
 
+/// <inheritdoc cref="IGlamourerApiState.DeletePlayerState"/>
+public sealed class DeletePlayerState(IDalamudPluginInterface pi)
+    : FuncSubscriber<string, ushort, uint, int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(DeletePlayerState)}";
+
+    /// <inheritdoc cref="IGlamourerApiState.DeletePlayerState"/>
+    public new GlamourerApiEc Invoke(string playerName, ushort worldId = ushort.MaxValue, uint key = 0)
+        => (GlamourerApiEc)base.Invoke(playerName, worldId, key);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<string, ushort, uint, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (a, b, c) => (int)api.DeletePlayerState(a, b, c));
+}
+
 /// <inheritdoc cref="IGlamourerApiState.UnlockAll"/>
 public sealed class UnlockAll(IDalamudPluginInterface pi)
     : FuncSubscriber<uint, int>(pi, Label)

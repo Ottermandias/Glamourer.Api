@@ -85,6 +85,13 @@ public interface IGlamourerApiState
     /// <returns> InvalidKey, Success, NothingDone. </returns>
     public GlamourerApiEc UnlockStateName(string playerName, uint key);
 
+    /// <summary> Completely remove an existing state of a uniquely identified player. </summary>
+    /// <param name="playerName"> The name of the player. </param>
+    /// <param name="worldId"> The ID of the player's home world. If this is <see cref="ushort.MaxValue"/>, all worlds are considered. </param>
+    /// <param name="key"> A key to unlock the state. </param>
+    /// <returns> InvalidKey, Success, NothingDone. </returns>
+    public GlamourerApiEc DeletePlayerState(string playerName, ushort worldId, uint key);
+
     /// <summary> Unlock all active glamourer states with a key. </summary>
     /// <param name="key"> The key to unlock states with. </param>
     /// <returns> The number of unlocked states. </returns>
