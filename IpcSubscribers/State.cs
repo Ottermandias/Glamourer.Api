@@ -219,23 +219,21 @@ public sealed class UnlockState(IDalamudPluginInterface pi)
 }
 /// <inheritdoc cref="IGlamourerApiState.CanUnlock"/>
 public sealed class CanUnlock(IDalamudPluginInterface pi)
-    : FuncSubscriber<int, uint, bool, bool, int>(pi, Label)
+    : FuncSubscriber<int, uint, (int, bool, bool)>(pi, Label)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(CanUnlock)}";
 
     /// <inheritdoc cref="IGlamourerApiState.CanUnlock"/>
-    public new GlamourerApiEc Invoke(int objectIndex, uint key, out bool isLocked, out bool canUnlock)
+    public GlamourerApiEc Invoke(int objectIndex, uint key, out bool isLocked, out bool canUnlock)
     {
-        isLocked = false;
-        canUnlock = false;
-        var ec = base.Invoke(objectIndex, key, isLocked, canUnlock);
+        (var ec, isLocked, canUnlock) = base.Invoke(objectIndex, key);
         return (GlamourerApiEc)ec; 
     }
 
     /// <summary> Create a provider. </summary>
-    public static FuncProvider<int, uint, bool, bool, int> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
-        => new(pi, Label, (a, b, c, d) => (int)api.CanUnlock(a, b, out c, out d));
+    public static FuncProvider<int, uint, (int, bool, bool)> Provider(IDalamudPluginInterface pi, IGlamourerApiState api)
+        => new(pi, Label, (a, b) => ((int)api.CanUnlock(a, b, out var c, out var d), c, d));
 }
 
 /// <inheritdoc cref="IGlamourerApiState.UnlockStateName"/>
