@@ -11,6 +11,10 @@ public sealed class ApiVersion(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(ApiVersion)}.V2";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.ApiVersion.V2"u8;
+
     /// <inheritdoc cref="IGlamourerApiBase.ApiVersion"/>
     public new (int Major, int Minor) Invoke()
         => base.Invoke();
@@ -27,6 +31,10 @@ public sealed class AutoReloadGearEnabled(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(AutoReloadGearEnabled)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.AutoReloadGearEnabled"u8;
+
     /// <inheritdoc cref="IGlamourerApiBase.AutoReloadGearEnabled"/>
     public new bool Invoke()
         => base.Invoke();
@@ -42,6 +50,10 @@ public static class Initialized
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(Initialized)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.Initialized"u8;
+
     /// <summary> Create a new event subscriber. </summary>
     public static EventSubscriber Subscriber(IDalamudPluginInterface pi, params Action[] actions)
         => new(pi, Label, actions);
@@ -56,6 +68,10 @@ public static class Disposed
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(Disposed)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.Disposed"u8;
 
     /// <summary> Create a new event subscriber. </summary>
     public static EventSubscriber Subscriber(IDalamudPluginInterface pi, params Action[] actions)

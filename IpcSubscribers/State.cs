@@ -13,6 +13,10 @@ public sealed class GetState(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(GetState)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.GetState"u8;
+
     /// <inheritdoc cref="IGlamourerApiState.GetState"/>
     public new (GlamourerApiEc, JObject?) Invoke(int objectIndex, uint key = 0)
     {
@@ -35,6 +39,10 @@ public sealed class GetStateName(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(GetStateName)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.GetStateName"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.GetStateName"/>
     public new (GlamourerApiEc, JObject?) Invoke(string objectName, uint key = 0)
@@ -59,6 +67,10 @@ public sealed class GetStateBase64(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(GetStateBase64)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.GetStateBase64"u8;
+
     /// <inheritdoc cref="IGlamourerApiState.GetStateBase64"/>
     public new (GlamourerApiEc, string?) Invoke(int objectIndex, uint key = 0)
     {
@@ -81,6 +93,10 @@ public sealed class GetStateBase64Name(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(GetStateBase64Name)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.GetStateBase64Name"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.GetStateBase64Name"/>
     public new (GlamourerApiEc, string?) Invoke(string objectName, uint key = 0)
@@ -105,6 +121,10 @@ public sealed class ApplyState(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(ApplyState)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.ApplyState"u8;
+
     /// <inheritdoc cref="IGlamourerApiState.ApplyState"/>
     public GlamourerApiEc Invoke(JObject state, int objectIndex, uint key = 0, ApplyFlag flags = ApplyFlagEx.StateDefault)
         => (GlamourerApiEc)Invoke(state, objectIndex, key, (ulong)flags);
@@ -124,6 +144,10 @@ public sealed class ApplyStateName(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(ApplyStateName)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.ApplyStateName"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.ApplyState"/>
     public GlamourerApiEc Invoke(JObject state, string objectName, uint key = 0, ApplyFlag flags = ApplyFlagEx.StateDefault)
@@ -145,6 +169,10 @@ public sealed class ReapplyState(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(ReapplyState)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.ReapplyState"u8;
+
     /// <inheritdoc cref="IGlamourerApiState.ReapplyState"/>
     public GlamourerApiEc Invoke(int objectIndex, uint key = 0, ApplyFlag flags = ApplyFlagEx.StateDefault)
         => (GlamourerApiEc)Invoke(objectIndex, key, (ulong)flags);
@@ -160,6 +188,10 @@ public sealed class ReapplyStateName(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(ReapplyStateName)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.ReapplyStateName"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.ReapplyStateName"/>
     public GlamourerApiEc Invoke(string objectName, uint key = 0, ApplyFlag flags = ApplyFlagEx.StateDefault)
@@ -177,6 +209,10 @@ public sealed class RevertState(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(RevertState)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.RevertState"u8;
+
     /// <inheritdoc cref="IGlamourerApiState.RevertState"/>
     public GlamourerApiEc Invoke(int objectIndex, uint key = 0, ApplyFlag flags = ApplyFlagEx.RevertDefault)
         => (GlamourerApiEc)Invoke(objectIndex, key, (ulong)flags);
@@ -192,6 +228,10 @@ public sealed class RevertStateName(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(RevertStateName)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.RevertStateName"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.RevertStateName"/>
     public GlamourerApiEc Invoke(string objectName, uint key = 0, ApplyFlag flags = ApplyFlagEx.RevertDefault)
@@ -209,6 +249,10 @@ public sealed class UnlockState(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(UnlockState)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.UnlockState"u8;
+
     /// <inheritdoc cref="IGlamourerApiState.UnlockState"/>
     public new GlamourerApiEc Invoke(int objectIndex, uint key = 0)
         => (GlamourerApiEc)base.Invoke(objectIndex, key);
@@ -223,6 +267,10 @@ public sealed class CanUnlock(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(CanUnlock)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.CanUnlock"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.CanUnlock"/>
     public GlamourerApiEc Invoke(int objectIndex, uint key, out bool isLocked, out bool canUnlock)
@@ -243,6 +291,10 @@ public sealed class UnlockStateName(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(UnlockStateName)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.UnlockStateName"u8;
+
     /// <inheritdoc cref="IGlamourerApiState.UnlockStateName"/>
     public new GlamourerApiEc Invoke(string objectName, uint key = 0)
         => (GlamourerApiEc)base.Invoke(objectName, key);
@@ -258,6 +310,10 @@ public sealed class DeletePlayerState(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(DeletePlayerState)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.DeletePlayerState"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.DeletePlayerState"/>
     public new GlamourerApiEc Invoke(string playerName, ushort worldId = ushort.MaxValue, uint key = 0)
@@ -275,6 +331,10 @@ public sealed class UnlockAll(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(UnlockAll)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.UnlockAll"u8;
+
     /// <inheritdoc cref="IGlamourerApiState.UnlockAll"/>
     public new int Invoke(uint key)
         => base.Invoke(key);
@@ -290,6 +350,10 @@ public sealed class RevertToAutomation(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(RevertToAutomation)}.V2";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.RevertToAutomation"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.RevertToAutomation"/>
     public GlamourerApiEc Invoke(int objectIndex, uint key = 0, ApplyFlag flags = ApplyFlagEx.RevertDefault)
@@ -307,6 +371,10 @@ public sealed class RevertToAutomationName(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(RevertToAutomationName)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.RevertToAutomationName"u8;
+
     /// <inheritdoc cref="IGlamourerApiState.RevertToAutomationName"/>
     public GlamourerApiEc Invoke(string objectName, uint key = 0, ApplyFlag flags = ApplyFlagEx.RevertDefault)
         => (GlamourerApiEc)Invoke(objectName, key, (ulong)flags);
@@ -321,6 +389,10 @@ public static class AutoReloadGearChanged
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(AutoReloadGearChanged)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.AutoReloadGearChanged"u8;
 
     /// <summary> Create a new event subscriber. </summary>
     public static EventSubscriber<bool> Subscriber(IDalamudPluginInterface pi, params Action<bool>[] actions)
@@ -337,6 +409,10 @@ public static class StateChanged
     /// <summary> The label. </summary>
     public const string Label = $"Penumbra.{nameof(StateChanged)}.V2";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.StateChanged.V2"u8;
+
     /// <summary> Create a new event subscriber. </summary>
     public static EventSubscriber<nint> Subscriber(IDalamudPluginInterface pi, params Action<nint>[] actions)
         => new(pi, Label, actions);
@@ -351,6 +427,10 @@ public static class StateChangedWithType
 {
     /// <summary> The label. </summary>
     public const string Label = $"Penumbra.{nameof(StateChangedWithType)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.StateChangedWithType"u8;
 
     /// <summary> Create a new event subscriber. </summary>
     public static EventSubscriber<nint, StateChangeType> Subscriber(IDalamudPluginInterface pi, params Action<nint, StateChangeType>[] actions)
@@ -367,6 +447,10 @@ public static class StateFinalized
     /// <summary> The label. </summary>
     public const string Label = $"Penumbra.{nameof(StateFinalized)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.StateFinalized"u8;
+
     /// <summary> Create a new event subscriber. </summary>
     public static EventSubscriber<nint, StateFinalizationType> Subscriber(IDalamudPluginInterface pi, params Action<nint, StateFinalizationType>[] actions)
         => new(pi, Label, actions);
@@ -381,6 +465,10 @@ public static class GPoseChanged
 {
     /// <summary> The label. </summary>
     public const string Label = $"Penumbra.{nameof(GPoseChanged)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.GPoseChanged"u8;
 
     /// <summary> Create a new event subscriber. </summary>
     public static EventSubscriber<bool> Subscriber(IDalamudPluginInterface pi, params Action<bool>[] actions)

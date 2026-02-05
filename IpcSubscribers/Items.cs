@@ -12,6 +12,10 @@ public sealed class SetItem(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(SetItem)}.V3";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.SetItem.V3"u8;
+
     /// <inheritdoc cref="IGlamourerApiItems.SetItem"/>
     public GlamourerApiEc Invoke(int objectIndex, ApiEquipSlot slot, ulong itemId, IReadOnlyList<byte> stain, uint key = 0,
         ApplyFlag flags = ApplyFlag.Once)
@@ -29,6 +33,10 @@ public sealed class SetItemName(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(SetItemName)}.V2";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.SetItemName.V2"u8;
 
     /// <inheritdoc cref="IGlamourerApiItems.SetItem"/>
     public GlamourerApiEc Invoke(string objectName, ApiEquipSlot slot, ulong itemId, IReadOnlyList<byte> stain, uint key = 0,
@@ -48,6 +56,10 @@ public sealed class SetBonusItem(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(SetBonusItem)}";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.SetBonusItem"u8;
+
     /// <inheritdoc cref="IGlamourerApiItems.SetBonusItem"/>
     public GlamourerApiEc Invoke(int objectIndex, ApiBonusSlot slot, ulong itemId, uint key = 0, ApplyFlag flags = ApplyFlag.Once)
         => (GlamourerApiEc)Invoke(objectIndex, (byte)slot, itemId, key, (ulong)flags);
@@ -64,6 +76,10 @@ public sealed class SetBonusItemName(IDalamudPluginInterface pi)
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(SetBonusItemName)}.V2";
 
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.SetBonusItemName.V2"u8;
+
     /// <inheritdoc cref="IGlamourerApiItems.SetBonusItemName"/>
     public GlamourerApiEc Invoke(string objectName, ApiBonusSlot slot, ulong itemId, uint key = 0, ApplyFlag flags = ApplyFlag.Once)
         => (GlamourerApiEc)Invoke(objectName, (byte)slot, itemId, key, (ulong)flags);
@@ -79,6 +95,10 @@ public sealed class SetMetaState(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(SetMetaState)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.SetMetaState"u8;
 
     /// <inheritdoc cref="IGlamourerApiItems.SetMetaState"/>
     public GlamourerApiEc Invoke(int objectIndex, MetaFlag types, bool newValue, uint key = 0, 
@@ -97,6 +117,10 @@ public sealed class SetMetaStateName(IDalamudPluginInterface pi)
 {
     /// <summary> The label. </summary>
     public const string Label = $"Glamourer.{nameof(SetMetaStateName)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.SetMetaStateName"u8;
 
     /// <inheritdoc cref="IGlamourerApiItems.SetMetaStateName"/>
     public GlamourerApiEc Invoke(string objectName, MetaFlag types, bool newValue, uint key = 0, 
