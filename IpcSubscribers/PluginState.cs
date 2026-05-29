@@ -1,5 +1,6 @@
 ﻿using Dalamud.Plugin;
 using Glamourer.Api.Api;
+using Glamourer.Api.Enums;
 using Glamourer.Api.Helpers;
 
 namespace Glamourer.Api.IpcSubscribers;
@@ -42,6 +43,146 @@ public sealed class AutoReloadGearEnabled(IDalamudPluginInterface pi)
     /// <summary> Create a provider. </summary>
     public static FuncProvider<bool> Provider(IDalamudPluginInterface pi, IGlamourerApiBase api)
         => new(pi, Label, () => api.AutoReloadGearEnabled);
+}
+
+/// <inheritdoc cref="IGlamourerApiPlugin.OpenMainWindow"/>
+public sealed class OpenMainWindow(IDalamudPluginInterface pi)
+    : ActionSubscriber<bool?, int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(OpenMainWindow)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.OpenMainWindow"u8;
+
+    /// <inheritdoc cref="IGlamourerApiPlugin.OpenMainWindow"/>
+    public void Invoke(bool? open, MainTabType tab = MainTabType.None)
+        => base.Invoke(open, (int)tab);
+
+    /// <summary> Create a provider. </summary>
+    public static ActionProvider<bool?, int> Provider(IDalamudPluginInterface pi, IGlamourerApiPlugin api)
+        => new(pi, Label, (open, tab) => api.OpenMainWindow(open, (MainTabType)tab));
+}
+
+/// <inheritdoc cref="IGlamourerApiPlugin.OpenDesign"/>
+public sealed class OpenDesign(IDalamudPluginInterface pi)
+    : ActionSubscriber<Guid>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(OpenDesign)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.OpenDesign"u8;
+
+    /// <inheritdoc cref="IGlamourerApiPlugin.OpenDesign"/>
+    public new void Invoke(Guid design)
+        => base.Invoke(design);
+
+    /// <summary> Create a provider. </summary>
+    public static ActionProvider<Guid> Provider(IDalamudPluginInterface pi, IGlamourerApiPlugin api)
+        => new(pi, Label, api.OpenDesign);
+}
+
+/// <inheritdoc cref="IGlamourerApiPlugin.OpenActorIndex"/>
+public sealed class OpenActorIndex(IDalamudPluginInterface pi)
+    : ActionSubscriber<int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(OpenActorIndex)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.OpenActorIndex"u8;
+
+    /// <inheritdoc cref="IGlamourerApiPlugin.OpenActorIndex"/>
+    public new void Invoke(int objectIndex)
+        => base.Invoke(objectIndex);
+
+    /// <summary> Create a provider. </summary>
+    public static ActionProvider<int> Provider(IDalamudPluginInterface pi, IGlamourerApiPlugin api)
+        => new(pi, Label, api.OpenActorIndex);
+}
+
+/// <inheritdoc cref="IGlamourerApiPlugin.OpenActorName"/>
+public sealed class OpenActorName(IDalamudPluginInterface pi)
+    : ActionSubscriber<string, ushort>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(OpenActorName)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.OpenActorName"u8;
+
+    /// <inheritdoc cref="IGlamourerApiPlugin.OpenActorName"/>
+    public new void Invoke(string name, ushort world = ushort.MaxValue)
+        => base.Invoke(name, world);
+
+    /// <summary> Create a provider. </summary>
+    public static ActionProvider<string, ushort> Provider(IDalamudPluginInterface pi, IGlamourerApiPlugin api)
+        => new(pi, Label, api.OpenActorName);
+}
+
+/// <inheritdoc cref="IGlamourerApiPlugin.OpenQuickDesignBar"/>
+public sealed class OpenQuickDesignBar(IDalamudPluginInterface pi)
+    : ActionSubscriber<bool?, Guid>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(OpenQuickDesignBar)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.OpenQuickDesignBar"u8;
+
+    /// <inheritdoc cref="IGlamourerApiPlugin.OpenQuickDesignBar"/>
+    public new void Invoke(bool? open, Guid designId = default)
+        => base.Invoke(open, designId);
+
+    /// <summary> Create a provider. </summary>
+    public static ActionProvider<bool?, Guid> Provider(IDalamudPluginInterface pi, IGlamourerApiPlugin api)
+        => new(pi, Label, api.OpenQuickDesignBar);
+}
+
+/// <inheritdoc cref="IGlamourerApiPlugin.OpenEquipmentBarIndex"/>
+public sealed class OpenEquipmentBarIndex(IDalamudPluginInterface pi)
+    : ActionSubscriber<bool?, int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(OpenEquipmentBarIndex)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.OpenEquipmentBarIndex"u8;
+
+    /// <inheritdoc cref="IGlamourerApiPlugin.OpenEquipmentBarIndex"/>
+    public new void Invoke(bool? open, int objectIndex = -1)
+        => base.Invoke(open, objectIndex);
+
+    /// <summary> Create a provider. </summary>
+    public static ActionProvider<bool?, int> Provider(IDalamudPluginInterface pi, IGlamourerApiPlugin api)
+        => new(pi, Label, api.OpenEquipmentBarIndex);
+}
+
+/// <inheritdoc cref="IGlamourerApiPlugin.OpenEquipmentBarName"/>
+public sealed class OpenEquipmentBarName(IDalamudPluginInterface pi)
+    : ActionSubscriber<bool?, string, ushort>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(OpenEquipmentBarName)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.OpenEquipmentBarName"u8;
+
+    /// <inheritdoc cref="IGlamourerApiPlugin.OpenEquipmentBarName"/>
+    public new void Invoke(bool? open, string name, ushort world = ushort.MaxValue)
+        => base.Invoke(open, name, world);
+
+    /// <summary> Create a provider. </summary>
+    public static ActionProvider<bool?, string, ushort> Provider(IDalamudPluginInterface pi, IGlamourerApiPlugin api)
+        => new(pi, Label, api.OpenEquipmentBarName);
 }
 
 /// <summary> Triggered when the Glamourer API is initialized and ready. </summary>

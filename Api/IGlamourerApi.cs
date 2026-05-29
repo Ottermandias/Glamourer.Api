@@ -11,4 +11,7 @@ public interface IGlamourerApi : IGlamourerApiBase
 
     /// <inheritdoc cref="IGlamourerApiState"/>
     public IGlamourerApiState   State   { get; }
+
+    /// <inheritdoc cref="IGlamourerApiPlugin"/>
+    public IGlamourerApiPlugin Plugin { get; }
 }
