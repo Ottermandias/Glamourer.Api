@@ -1,7 +1,7 @@
 ﻿using Dalamud.Plugin;
 using Glamourer.Api.Api;
 using Glamourer.Api.Enums;
-using Glamourer.Api.Helpers;
+using Luna;
 using Newtonsoft.Json.Linq;
 
 namespace Glamourer.Api.IpcSubscribers;
@@ -18,7 +18,7 @@ public sealed class GetState(IDalamudPluginInterface pi)
         => "Glamourer.GetState"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.GetState"/>
-    public new (GlamourerApiEc, JObject?) Invoke(int objectIndex, uint key = 0)
+    public (GlamourerApiEc, JObject?) Invoke(int objectIndex, uint key = 0)
     {
         var (ec, data) = base.Invoke(objectIndex, key);
         return ((GlamourerApiEc)ec, data);
@@ -45,7 +45,7 @@ public sealed class GetStateName(IDalamudPluginInterface pi)
         => "Glamourer.GetStateName"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.GetStateName"/>
-    public new (GlamourerApiEc, JObject?) Invoke(string objectName, uint key = 0)
+    public (GlamourerApiEc, JObject?) Invoke(string objectName, uint key = 0)
     {
         var (ec, data) = base.Invoke(objectName, key);
         return ((GlamourerApiEc)ec, data);
@@ -72,7 +72,7 @@ public sealed class GetStateBase64(IDalamudPluginInterface pi)
         => "Glamourer.GetStateBase64"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.GetStateBase64"/>
-    public new (GlamourerApiEc, string?) Invoke(int objectIndex, uint key = 0)
+    public (GlamourerApiEc, string?) Invoke(int objectIndex, uint key = 0)
     {
         var (ec, data) = base.Invoke(objectIndex, key);
         return ((GlamourerApiEc)ec, data);
@@ -99,7 +99,7 @@ public sealed class GetStateBase64Name(IDalamudPluginInterface pi)
         => "Glamourer.GetStateBase64Name"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.GetStateBase64Name"/>
-    public new (GlamourerApiEc, string?) Invoke(string objectName, uint key = 0)
+    public (GlamourerApiEc, string?) Invoke(string objectName, uint key = 0)
     {
         var (ec, data) = base.Invoke(objectName, key);
         return ((GlamourerApiEc)ec, data);
@@ -254,7 +254,7 @@ public sealed class UnlockState(IDalamudPluginInterface pi)
         => "Glamourer.UnlockState"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.UnlockState"/>
-    public new GlamourerApiEc Invoke(int objectIndex, uint key = 0)
+    public GlamourerApiEc Invoke(int objectIndex, uint key = 0)
         => (GlamourerApiEc)base.Invoke(objectIndex, key);
 
     /// <summary> Create a provider. </summary>
@@ -296,7 +296,7 @@ public sealed class UnlockStateName(IDalamudPluginInterface pi)
         => "Glamourer.UnlockStateName"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.UnlockStateName"/>
-    public new GlamourerApiEc Invoke(string objectName, uint key = 0)
+    public GlamourerApiEc Invoke(string objectName, uint key = 0)
         => (GlamourerApiEc)base.Invoke(objectName, key);
 
     /// <summary> Create a provider. </summary>
@@ -316,7 +316,7 @@ public sealed class DeletePlayerState(IDalamudPluginInterface pi)
         => "Glamourer.DeletePlayerState"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.DeletePlayerState"/>
-    public new GlamourerApiEc Invoke(string playerName, ushort worldId = ushort.MaxValue, uint key = 0)
+    public GlamourerApiEc Invoke(string playerName, ushort worldId = ushort.MaxValue, uint key = 0)
         => (GlamourerApiEc)base.Invoke(playerName, worldId, key);
 
     /// <summary> Create a provider. </summary>
@@ -336,7 +336,7 @@ public sealed class UnlockAll(IDalamudPluginInterface pi)
         => "Glamourer.UnlockAll"u8;
 
     /// <inheritdoc cref="IGlamourerApiState.UnlockAll"/>
-    public new int Invoke(uint key)
+    public int Invoke(uint key)
         => base.Invoke(key);
 
     /// <summary> Create a provider. </summary>

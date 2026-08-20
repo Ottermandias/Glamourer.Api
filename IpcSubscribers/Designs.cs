@@ -1,7 +1,7 @@
 ﻿using Dalamud.Plugin;
 using Glamourer.Api.Api;
 using Glamourer.Api.Enums;
-using Glamourer.Api.Helpers;
+using Luna;
 using Newtonsoft.Json.Linq;
 
 namespace Glamourer.Api.IpcSubscribers;
@@ -59,7 +59,7 @@ public sealed class GetExtendedDesignData(IDalamudPluginInterface pi)
         => "Glamourer.GetExtendedDesignData"u8;
 
     /// <inheritdoc cref="IGlamourerApiDesigns.GetExtendedDesignData"/>
-    public new (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb) Invoke(Guid id)
+    public (string DisplayName, string FullPath, uint DisplayColor, bool ShownInQdb) Invoke(Guid id)
         => base.Invoke(id);
 
     /// <summary> Create a provider. </summary>
@@ -143,7 +143,7 @@ public sealed class DeleteDesign(IDalamudPluginInterface pi) : FuncSubscriber<Gu
         => "Glamourer.DeleteDesign"u8;
 
     /// <inheritdoc cref="IGlamourerApiDesigns.DeleteDesign"/>
-    public new GlamourerApiEc Invoke(Guid designId)
+    public GlamourerApiEc Invoke(Guid designId)
         => (GlamourerApiEc)base.Invoke(designId);
 
     /// <summary> Create a provider. </summary>
@@ -162,7 +162,7 @@ public sealed class GetDesignBase64(IDalamudPluginInterface pi) : FuncSubscriber
         => "Glamourer.GetDesignBase64"u8;
 
     /// <inheritdoc cref="IGlamourerApiDesigns.GetDesignBase64"/>
-    public new string? Invoke(Guid designId)
+    public string? Invoke(Guid designId)
         => base.Invoke(designId);
 
     /// <summary> Create a provider. </summary>
@@ -181,7 +181,7 @@ public sealed class GetDesignJObject(IDalamudPluginInterface pi) : FuncSubscribe
         => "Glamourer.GetDesignJObject"u8;
 
     /// <inheritdoc cref="IGlamourerApiDesigns.GetDesignJObject"/>
-    public new JObject? Invoke(Guid designId)
+    public JObject? Invoke(Guid designId)
         => base.Invoke(designId);
 
     /// <summary> Create a provider. </summary>

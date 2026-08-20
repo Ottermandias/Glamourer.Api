@@ -1,7 +1,7 @@
 ﻿using Dalamud.Plugin;
 using Glamourer.Api.Api;
 using Glamourer.Api.Enums;
-using Glamourer.Api.Helpers;
+using Luna;
 
 namespace Glamourer.Api.IpcSubscribers;
 

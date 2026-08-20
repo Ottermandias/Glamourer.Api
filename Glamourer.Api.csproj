@@ -25,6 +25,12 @@
         <Use_Dalamud_ImGui>false</Use_Dalamud_ImGui>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Luna\Luna.Generators\Luna.Generators.csproj" OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\Luna\Luna\Luna.csproj" />
+    </ItemGroup>
+
     <PropertyGroup>
         <NoWarn>1591</NoWarn>
     </PropertyGroup>

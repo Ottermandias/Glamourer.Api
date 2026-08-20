@@ -1,7 +1,7 @@
 ﻿using Dalamud.Plugin;
 using Glamourer.Api.Api;
 using Glamourer.Api.Enums;
-using Glamourer.Api.Helpers;
+using Luna;
 
 namespace Glamourer.Api.IpcSubscribers;
 
@@ -77,7 +77,7 @@ public sealed class OpenDesign(IDalamudPluginInterface pi)
         => "Glamourer.OpenDesign"u8;
 
     /// <inheritdoc cref="IGlamourerApiPlugin.OpenDesign"/>
-    public new void Invoke(Guid design)
+    public void Invoke(Guid design)
         => base.Invoke(design);
 
     /// <summary> Create a provider. </summary>
@@ -97,7 +97,7 @@ public sealed class OpenActorIndex(IDalamudPluginInterface pi)
         => "Glamourer.OpenActorIndex"u8;
 
     /// <inheritdoc cref="IGlamourerApiPlugin.OpenActorIndex"/>
-    public new void Invoke(int objectIndex)
+    public void Invoke(int objectIndex)
         => base.Invoke(objectIndex);
 
     /// <summary> Create a provider. </summary>
@@ -117,7 +117,7 @@ public sealed class OpenActorName(IDalamudPluginInterface pi)
         => "Glamourer.OpenActorName"u8;
 
     /// <inheritdoc cref="IGlamourerApiPlugin.OpenActorName"/>
-    public new void Invoke(string name, ushort world = ushort.MaxValue)
+    public void Invoke(string name, ushort world = ushort.MaxValue)
         => base.Invoke(name, world);
 
     /// <summary> Create a provider. </summary>
@@ -137,7 +137,7 @@ public sealed class OpenQuickDesignBar(IDalamudPluginInterface pi)
         => "Glamourer.OpenQuickDesignBar"u8;
 
     /// <inheritdoc cref="IGlamourerApiPlugin.OpenQuickDesignBar"/>
-    public new void Invoke(bool? open, Guid designId = default)
+    public void Invoke(bool? open, Guid designId = default)
         => base.Invoke(open, designId);
 
     /// <summary> Create a provider. </summary>
@@ -157,7 +157,7 @@ public sealed class OpenEquipmentBarIndex(IDalamudPluginInterface pi)
         => "Glamourer.OpenEquipmentBarIndex"u8;
 
     /// <inheritdoc cref="IGlamourerApiPlugin.OpenEquipmentBarIndex"/>
-    public new void Invoke(bool? open, int objectIndex = -1)
+    public void Invoke(bool? open, int objectIndex = -1)
         => base.Invoke(open, objectIndex);
 
     /// <summary> Create a provider. </summary>
@@ -177,7 +177,7 @@ public sealed class OpenEquipmentBarName(IDalamudPluginInterface pi)
         => "Glamourer.OpenEquipmentBarName"u8;
 
     /// <inheritdoc cref="IGlamourerApiPlugin.OpenEquipmentBarName"/>
-    public new void Invoke(bool? open, string name, ushort world = ushort.MaxValue)
+    public void Invoke(bool? open, string name, ushort world = ushort.MaxValue)
         => base.Invoke(open, name, world);
 
     /// <summary> Create a provider. </summary>

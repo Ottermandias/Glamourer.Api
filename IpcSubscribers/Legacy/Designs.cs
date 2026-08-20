@@ -1,6 +1,6 @@
 ﻿using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Plugin;
-using Glamourer.Api.Helpers;
+using Luna;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -20,7 +20,7 @@ public sealed class ApplyByGuid(IDalamudPluginInterface pi)
 {
     public const string Label = $"Glamourer.{nameof(ApplyByGuid)}";
 
-    public new void Invoke(Guid design, string name)
+    public void Invoke(Guid design, string name)
         => base.Invoke(design, name);
 }
 
@@ -29,7 +29,7 @@ public sealed class ApplyByGuidOnce(IDalamudPluginInterface pi)
 {
     public const string Label = $"Glamourer.{nameof(ApplyByGuidOnce)}";
 
-    public new void Invoke(Guid design, string name)
+    public void Invoke(Guid design, string name)
         => base.Invoke(design, name);
 }
 
@@ -38,7 +38,7 @@ public sealed class ApplyByGuidToCharacter(IDalamudPluginInterface pi)
 {
     public const string Label = $"Glamourer.{nameof(ApplyByGuidToCharacter)}";
 
-    public new void Invoke(Guid design, ICharacter? character)
+    public void Invoke(Guid design, ICharacter? character)
         => base.Invoke(design, character);
 }
 
@@ -47,6 +47,6 @@ public sealed class ApplyByGuidOnceToCharacter(IDalamudPluginInterface pi)
 {
     public const string Label = $"Glamourer.{nameof(ApplyByGuidOnceToCharacter)}";
 
-    public new void Invoke(Guid design, ICharacter? character)
+    public void Invoke(Guid design, ICharacter? character)
         => base.Invoke(design, character);
 }
