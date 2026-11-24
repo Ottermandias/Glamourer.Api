@@ -47,6 +47,13 @@ public interface IGlamourerApiDesigns
     /// <returns> CouldNotParse on failure to parse, Success; along with the GUID of the newly created design upon success or a 0-GUID otherwise. </returns>
     public (GlamourerApiEc, Guid) AddDesign(string designInput, string name);
 
+    /// <summary> Update an existing design from Base64 or JSON data and queue saving it to disk. </summary>
+    /// <param name="designId"> The GUID of the design to be updated. </param>
+    /// <param name="designInput"> The new content of the design in Base64 or JSON object format. </param>
+    /// <param name="flags"> Flags toggling individual sections off (0 updates all sections present in the input). </param>
+    /// <returns> DesignNotFound, DesignWriteProtected, NothingDone, CouldNotParse, UnknownError, or Success. </returns>
+    public GlamourerApiEc UpdateDesign(Guid designId, string designInput, DesignUpdateFlag flags = DesignUpdateFlag.None);
+
     /// <summary> Delete an existing design. </summary>
     /// <param name="designId"> The GUID of the design to be deleted. </param>
     /// <returns> Success or NothingDone. </returns>

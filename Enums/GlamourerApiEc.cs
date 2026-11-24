@@ -30,6 +30,9 @@ public enum GlamourerApiEc
     /// <summary> The provided design input could not be parsed. </summary>
     CouldNotParse = 8,
 
+    /// <summary> The requested design is write-protected and can not be modified. </summary>
+    DesignWriteProtected = 9,
+
     /// <summary> An unknown error occured. </summary>
     UnknownError = int.MaxValue,
 }
