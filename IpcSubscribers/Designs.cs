@@ -132,6 +132,25 @@ public sealed class AddDesign(IDalamudPluginInterface pi) : FuncSubscriber<strin
         });
 }
 
+/// <inheritdoc cref="IGlamourerApiDesigns.UpdateDesign"/>
+public sealed class UpdateDesign(IDalamudPluginInterface pi) : FuncSubscriber<Guid, string, ulong, int>(pi, Label)
+{
+    /// <summary> The label. </summary>
+    public const string Label = $"Glamourer.{nameof(UpdateDesign)}";
+
+    /// <summary> The label as a UTF8 string. </summary>
+    public static ReadOnlySpan<byte> LabelU8
+        => "Glamourer.UpdateDesign"u8;
+
+    /// <inheritdoc cref="IGlamourerApiDesigns.UpdateDesign"/>
+    public GlamourerApiEc Invoke(Guid designId, string designData, DesignUpdateFlag flags = DesignUpdateFlag.None)
+        => (GlamourerApiEc)base.Invoke(designId, designData, (ulong)flags);
+
+    /// <summary> Create a provider. </summary>
+    public static FuncProvider<Guid, string, ulong, int> Provider(IDalamudPluginInterface pi, IGlamourerApiDesigns api)
+        => new(pi, Label, (a, b, c) => (int)api.UpdateDesign(a, b, (DesignUpdateFlag)c));
+}
+
 /// <inheritdoc cref="IGlamourerApiDesigns.DeleteDesign"/>
 public sealed class DeleteDesign(IDalamudPluginInterface pi) : FuncSubscriber<Guid, int>(pi, Label)
 {
